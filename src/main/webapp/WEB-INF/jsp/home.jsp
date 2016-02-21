@@ -61,11 +61,14 @@
 				against.  Start by selecting your state and representative.</p>
 			<p>
 			<div >
-				<select class="dropdown" id="state">
+				<select class="dropdown" id="state" onchange="showReps()">
 					<option>state</option>
 					<c:forEach var="s" items="${states}">
 						<option>${s}</option>
 					</c:forEach>
+				</select>
+				<select  class="dropdown" id="reps">
+				
 				</select>
 			</div>
 			</p>

@@ -3,7 +3,18 @@ $(document).ready(function() {
 });
 
 function showReps() {
-	var state = $("#states").val();
+	var state = $("#state").val();
+	$("#reps").find('option').remove().end();
+	$.getJSON("/legislators?state=" + state, function(response) {
+		$.each(response, function(key, val) {
+			$('#reps').append($('<option>', {
+			    value: val.id,
+			    text: val.name
+			}));
+		}).fail(function() {
+			alert("couldn't load representatives");
+		});
+	});
 }
 
 function showChart() {
