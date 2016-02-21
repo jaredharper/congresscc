@@ -11,10 +11,25 @@ function showReps() {
 			    value: val.id,
 			    text: val.name
 			}));
-		}).fail(function() {
-			alert("couldn't load representatives");
 		});
 	});
+}
+
+function showNewRepInfo() {
+	var target = "/similarity?id=" + $("#reps").val();
+	$("#sim").find('p').remove().end();
+	$("#dis").find('p').remove().end();
+	$.getJSON(target, function(response) {
+		$.each(response, function(key, v) {
+			for(var i = 0; i < v.length;i++) {
+				$('#' + key).append($('<p>', {
+				    id: v[i].id,
+				    text: v[i].count
+				}));				
+			}
+			
+		});
+	});	
 }
 
 function showChart() {

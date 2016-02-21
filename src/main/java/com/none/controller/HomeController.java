@@ -1,5 +1,6 @@
 package com.none.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.none.mapper.VoteMapper;
+import com.none.pojo.Legislator;
 
 @Controller
 public class HomeController {
@@ -22,7 +24,8 @@ public class HomeController {
 	
     @RequestMapping("/home")
     @ResponseBody
-    public String home() {
+    public String home() 
+    {
         return "Hello World!";
     }
     
@@ -39,7 +42,17 @@ public class HomeController {
     public String legislators(@RequestParam String state)
     {
     	String response = new Gson().toJson(voteMap.getReps(state));
-    	Logger.getAnonymousLogger().log(Level.INFO, response);
+    	return response;
+    }
+    
+    @RequestMapping("/similarity")
+    @ResponseBody
+    public String similarity(@RequestParam String id)
+    {
+    	HashMap<String, List<Legislator>> m = new HashMap<>();
+    	m.put("sim", voteMap.getSims(id));
+    	m.put("dis", voteMap.getDims(id));
+    	String response = new Gson().toJson(m);
     	return response;
     }
     
