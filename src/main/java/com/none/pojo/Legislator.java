@@ -2,7 +2,27 @@ package com.none.pojo;
 
 public class Legislator
 {
-	private String id,name,count;
+	private String id,name,count,party,state;
+
+	public String getParty()
+	{
+		return party;
+	}
+
+	public void setParty(String party)
+	{
+		this.party = party;
+	}
+
+	public String getState()
+	{
+		return state;
+	}
+
+	public void setState(String state)
+	{
+		this.state = state;
+	}
 
 	public String getCount()
 	{

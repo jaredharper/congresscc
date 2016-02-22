@@ -82,15 +82,19 @@
           <h2>With</h2>
           <p>These are the people your rep voted most like </p>
           <div id="sim">
+          	<span>
           	<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          	</span>
           </div>          
         </div>
         <div class="col-md-2"></div>
-        <div class="col-md-5">
+        <div class="col-md-6">
           <h2>Against</h2>
           <p>These are the people with the fewest votes in common with your rep</p>
           <div id="dis">
+          	<span>
           	<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          	</span>
           </div>
         </div>
       </div>

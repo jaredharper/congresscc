@@ -16,10 +16,13 @@ public interface VoteMapper
 	@Select("SELECT legislator as id,displayname as name FROM legislator WHERE state = #{state};")
 	List<Legislator> getReps(@Param("state") String state);
 	
-	@Select("SELECT second as id, count from sm2015 where first = #{id} order by count desc limit 10")
+	@Select("SELECT second as id, count, displayname as name, party, state from sm2015 join legislator2 on second = legislator where first = #{id} order by count desc limit 10")
 	List<Legislator> getSims(@Param("id") String id);
 	
-	@Select("SELECT second as id, count from sm2015 where first = #{id} order by count asc limit 10")
+	@Select("SELECT second as id, count, displayname as name, party, state from sm2015 join legislator2 on second = legislator where first = #{id} order by count asc limit 10")
 	List<Legislator> getDims(@Param("id") String id);
+	
+	@Select("SELECT displayname as name, state, party FROM legislator WHERE legislator = #{id};")
+	List<Legislator> getMetas(@Param("id") String id);
 
 }

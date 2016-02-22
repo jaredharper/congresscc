@@ -17,17 +17,52 @@ function showReps() {
 
 function showNewRepInfo() {
 	var target = "/similarity?id=" + $("#reps").val();
-	$("#sim").find('p').remove().end();
-	$("#dis").find('p').remove().end();
+	
+	$("#sim").find('span').remove().end();
+	$("#sim").find('br').remove().end();
+	$("#dis").find('span').remove().end();
+	$("#dis").find('br').remove().end();
+	
+	$("#sim").append($('<div>', {
+		id: 'sim1'
+	}))
+	$("#dis").append($('<div>', {
+		id: 'dis1'
+	}))
+	
 	$.getJSON(target, function(response) {
 		$.each(response, function(key, v) {
+			var count = 1;
 			for(var i = 0; i < v.length;i++) {
-				$('#' + key).append($('<p>', {
-				    id: v[i].id,
-				    text: v[i].count
-				}));				
-			}
-			
+					
+				var jqId = '#' + v[i].id;
+				var parentId = '#' + key + '1';
+				
+				$(parentId).append($('<div>',{
+				    id: v[i].id					    
+				}));
+				
+				$(jqId).append($('<img>', {
+					src: "img/" + v[i].id + ".jpg"
+				}));					
+
+				var newElt = $('<ul/>',{
+					'class':'list-group',
+					width: '200px'
+				});
+				var a = [v[i].name, v[i].party,v[i].state,(v[i].count / 2)];
+				var b = ["name","party","state","votes in common"];
+				$(jqId).append(newElt);
+				for (var j = 0; j < 4; j++) {
+					var ne = $('<li/>',{
+						'class':'list-group-item',
+						html: b[j] + ':' + a[j]
+					});
+					$(newElt).append(ne);
+				}				
+				$(jqId).append(newElt);	
+								
+			}			
 		});
 	});	
 }
