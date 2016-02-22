@@ -56,4 +56,11 @@ public class HomeController {
     	return response;
     }
     
+    @RequestMapping("/detail")
+    @ResponseBody
+    public String detail(@RequestParam String id)
+    {
+    	return new Gson().toJson(voteMap.getDetail(id));
+    }
+    
 }

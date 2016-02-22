@@ -16,17 +16,53 @@ function showReps() {
 }
 
 function showNewRepInfo() {
+	
+	$("#detail").find('div').remove().end();
+	
+	var detail = "/detail?id=" + $("#reps").val();
+	$.getJSON(detail, function(response) {
+		
+		var jqId = '#' + $("#reps").val();
+		var parentId = $("#reps").val();
+		
+		$("#detail").append($('<div>',{
+		    id: parentId					    
+		}));
+		
+		$(jqId).append($('<img>', {
+			src: "img/" + parentId + ".jpg"
+		}));					
+
+		var newElt = $('<ul/>',{
+			'class':'list-group',
+			width: '200px'
+		});
+		var a = [response.name, response.party,response.state];
+		var b = ["name","party","state"];
+		$(jqId).append(newElt);
+		for (var j = 0; j < 3; j++) {
+			var ne = $('<li/>',{
+				'class':'list-group-item',
+				html: b[j] + ':' + a[j]
+			});
+			$(newElt).append(ne);
+		}				
+		$(jqId).append(newElt);
+		
+	});
+	
 	var target = "/similarity?id=" + $("#reps").val();
+	$("#repName").text($("#reps").find(":selected").text());
 	
 	$("#sim").find('span').remove().end();
 	$("#sim").find('br').remove().end();
 	$("#dis").find('span').remove().end();
 	$("#dis").find('br').remove().end();
 	
-	$("#sim").append($('<div>', {
+	$("#sim").append($('<span>', {
 		id: 'sim1'
 	}))
-	$("#dis").append($('<div>', {
+	$("#dis").append($('<span>', {
 		id: 'dis1'
 	}))
 	
