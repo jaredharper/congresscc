@@ -5,6 +5,7 @@ $(document).ready(function() {
 function showReps() {
 	var state = $("#state").val();
 	$("#reps").find('option').remove().end();
+	$('#reps').append($('<option>'));
 	$.getJSON("/legislators?state=" + state, function(response) {
 		$.each(response, function(key, val) {
 			$('#reps').append($('<option>', {
@@ -19,18 +20,21 @@ function showNewRepInfo() {
 	
 	$("#detail").find('div').remove().end();
 	
-	var detail = "/detail?id=" + $("#reps").val();
+	var sourceId = $("#reps").val();
+	var detail = "/detail?id=" + sourceId;
+	var jqId = '#' + sourceId;
 	$.getJSON(detail, function(response) {
-		
-		var jqId = '#' + $("#reps").val();
-		var parentId = $("#reps").val();
-		
+
 		$("#detail").append($('<div>',{
-		    id: parentId					    
+		    id: sourceId					    
 		}));
 		
 		$(jqId).append($('<img>', {
-			src: "img/" + parentId + ".jpg"
+			src: "img/" + sourceId + ".jpg",
+			style: "cursor: pointer",
+			click: function() {
+				window.open("/leg/" + sourceId);
+			}
 		}));					
 
 		var newElt = $('<ul/>',{
@@ -51,7 +55,7 @@ function showNewRepInfo() {
 		
 	});
 	
-	var target = "/similarity?id=" + $("#reps").val();
+	var target = "/similarity?id=" + sourceId;
 	$("#repName").text($("#reps").find(":selected").text());
 	
 	$("#sim").find('span').remove().end();
@@ -72,6 +76,7 @@ function showNewRepInfo() {
 			for(var i = 0; i < v.length;i++) {
 					
 				var jqId = '#' + v[i].id;
+				var bareId = v[i].id
 				var parentId = '#' + key + '1';
 				
 				$(parentId).append($('<div>',{
@@ -79,14 +84,18 @@ function showNewRepInfo() {
 				}));
 				
 				$(jqId).append($('<img>', {
-					src: "img/" + v[i].id + ".jpg"
+					src: "img/" + v[i].id + ".jpg",
+					style: "cursor: pointer",
+					click: function() {
+						window.open("/leg/" + bareId);
+					}
 				}));					
 
 				var newElt = $('<ul/>',{
 					'class':'list-group',
 					width: '200px'
 				});
-				var a = [v[i].name, v[i].party,v[i].state,(v[i].count / 2)];
+				var a = [v[i].name, v[i].party,v[i].state,v[i].count / 2];
 				var b = ["name","party","state","votes in common"];
 				$(jqId).append(newElt);
 				for (var j = 0; j < 4; j++) {
@@ -101,38 +110,4 @@ function showNewRepInfo() {
 			}			
 		});
 	});	
-}
-
-function showChart() {
-		
-		var data = {
-			labels : [ "January", "February", "March", "April", "May",
-					"June", "July" ],
-			datasets : [ {
-				label : "My First dataset",
-				fillColor : "rgba(220,220,220,0.2)",
-				strokeColor : "rgba(220,220,220,1)",
-				pointColor : "rgba(220,220,220,1)",
-				pointStrokeColor : "#fff",
-				pointHighlightFill : "#fff",
-				pointHighlightStroke : "rgba(220,220,220,1)",
-				data : [ 65, 59, 80, 81, 56, 55, 40 ]
-			}, {
-				label : "My Second dataset",
-				fillColor : "rgba(151,187,205,0.2)",
-				strokeColor : "rgba(151,187,205,1)",
-				pointColor : "rgba(151,187,205,1)",
-				pointStrokeColor : "#fff",
-				pointHighlightFill : "#fff",
-				pointHighlightStroke : "rgba(151,187,205,1)",
-				data : [ 28, 48, 40, 19, 86, 27, 90 ]
-			} ]
-		};
-
-		// Get context with jQuery - using jQuery's .get() method.
-		var ctx = document.getElementById("myChart").getContext("2d");
-		var myLineChart = new Chart(ctx).Line(data, {
-			scaleBeginAtZero : true
-		});	
-
 }

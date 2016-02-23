@@ -39,17 +39,7 @@
           </button>
 
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-        </div><!--/.navbar-collapse -->
+
       </div>
     </nav>
 
@@ -93,7 +83,7 @@
           <p><span id="repName">Your rep</span> voted most like </p>
           <div id="sim">
           	<span>
-          	<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          	
           	</span>
           </div>          
         </div>
@@ -103,7 +93,7 @@
           <p>And voted least like</p>
           <div id="dis">
           	<span>
-          	<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          	
           	</span>
           </div>
         </div>
@@ -111,9 +101,6 @@
 
       <hr>
 
-      <footer>
-        <p>&copy; 2015 Company, Inc.</p>
-      </footer>
     </div> <!-- /container -->
 
 

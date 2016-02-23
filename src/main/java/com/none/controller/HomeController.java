@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -61,6 +62,13 @@ public class HomeController {
     public String detail(@RequestParam String id)
     {
     	return new Gson().toJson(voteMap.getDetail(id));
+    }
+    
+    @RequestMapping(value = "/leg")
+    public String detailPage(@RequestParam String id, Model model)
+    {
+    	model.addAttribute("id",id);
+    	return "detail";
     }
     
 }
