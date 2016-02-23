@@ -11,9 +11,6 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 @ComponentScan("com.none")
 public class Main {
     public static void main(String[] args) throws Exception {
-    	AnnotationConfigWebApplicationContext a = new AnnotationConfigWebApplicationContext();
-    	a.register(Config.class);
-    	a.refresh();
         SpringApplication.run(Main.class, args);
     }	
 }
