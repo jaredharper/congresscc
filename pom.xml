@@ -4,7 +4,6 @@
 	<groupId>ct1</groupId>
 	<artifactId>ct1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
