@@ -30,7 +30,7 @@ public class HomeController {
         return "Hello World!";
     }
     
-    @RequestMapping("/bob")
+    @RequestMapping("/")
     public String home2(Model model)
     {
 		List<String> s = voteMap.getStates();
