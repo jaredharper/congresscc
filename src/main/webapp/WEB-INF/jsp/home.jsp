@@ -83,23 +83,17 @@
 			</div>
 
 			<div class="col-md-3 col-xs-12">
-
 				<h2>Against</h2>
 				<p>And voted least like</p>
 				<div id="dis">
-					<span> </span>
-
+				<span> </span>
 				</div>
 			</div>
 			<div class="col-md-1 col-xs-12"></div>
 		</div>
 		<div class="row">
-
 			<div class="col-md-3 col-xs-12"></div>
-
-
 			<div class="col-md-7 col-xs-12">
-
 				<div style="width: 50%; margin: 0 auto">
 					<script async
 						src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -111,7 +105,6 @@
 						(adsbygoogle = window.adsbygoogle || []).push({});
 					</script>
 				</div>
-
 			</div>
 			<div class="col-md-2 col-xs-12"></div>
 		</div>

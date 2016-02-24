@@ -1,7 +1,17 @@
+/**
+ * On page load show an arbitrarily selected
+ * representative's data so the user knows
+ * what to expect
+ */
 $(document).ready(function() {
 	showNewRepInfo("A000371");
 });
 
+/**
+ * (re)populate the dropdown list of
+ * available representatives based on the
+ * selected state
+ */
 function showReps() {
 	var state = $("#state").val();
 	$("#reps").find('option').remove().end();
@@ -16,24 +26,32 @@ function showReps() {
 	});
 }
 
+/**
+ * Based on the selected criteria, get the chosen representative
+ * and display their information, then get their sim/dims from
+ * the similarity matrix and display those as well
+ * 
+ * @param optionalId
+ */
 function showNewRepInfo(optionalId) {
 	
+	// Clean out the old rep
 	$("#detail").find('div').remove().end();
 	
+	// Get the new rep's id
 	var sourceId;
 	if (optionalId)
 		sourceId = optionalId;
 	else
 		sourceId = $("#reps").val();
 	
+	// ajax call to populate the rep's data
 	var detail = "/detail?id=" + sourceId;
 	var jqId = '#' + sourceId;
 	$.getJSON(detail, function(response) {
-
 		$("#detail").append($('<div>',{
 		    id: sourceId					    
-		}));
-		
+		}));		
 		$(jqId).append($('<img>', {
 			src: "img/" + sourceId + ".jpg",
 			style: "cursor: pointer",
@@ -60,9 +78,7 @@ function showNewRepInfo(optionalId) {
 		
 	});
 	
-	
-	$("#repName").text($("#reps").find(":selected").text());
-	
+	// Clean out old sim/dim
 	$("#sim").find('span').remove().end();
 	$("#sim").find('br').remove().end();
 	$("#dis").find('span').remove().end();
@@ -75,7 +91,8 @@ function showNewRepInfo(optionalId) {
 		id: 'dis1'
 	}))
 	
-	
+	// Get the sim/dim for the selected rep and
+	// populate their info as well
 	var target = "/similarity?id=" + sourceId;
 	$.getJSON(target, function(response) {
 		$.each(response, function(key, v) {
