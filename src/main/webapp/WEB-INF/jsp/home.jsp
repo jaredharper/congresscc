@@ -28,23 +28,25 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
 
-        </div>
-
-      </div>
-    </nav>
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-	<div class="jumbotron">
+    <div class="container">
+    
+	<div class="row">
+		<div class="col-md-12 col-xs-12">	
+			<script async
+				src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- second -->
+			<ins class="adsbygoogle"
+				style="display: inline-block; width: 728px; height: 90px"
+				data-ad-client="ca-pub-2577969905607332" data-ad-slot="4847497007"></ins>
+			<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>	
+		</div>
+	</div>
+    
+    <div class="row">
+	<div class="col-md-12 col-xs-12 jumbotron">
 		<div class="container">
 			<h1>Congress Thing</h1>
 			<p>See who your congressional representatives vote with...and
@@ -64,57 +66,57 @@
 			</p>
 		</div>
 	</div>
+	</div>
+	</div>
 
 	<div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-      	<div class="col-md-3">
-      		<div id="detail">
-      			<span></span>
-      		</div>
-      	</div>
-      	<div class="col-md-1 col-xs-12"></div>
-      	<div class="col-md-3 col-xs-12"></div>
-      	<div class="col-md-4 col-xs-12">
-      		<div class="" style="left: 0px; width: 200px; height: 360px;">     	
-	      	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<!-- first -->
-			<ins class="adsbygoogle"
-			     style="display:block"
-			     data-ad-client="ca-pub-2577969905607332"
-			     data-ad-slot="5024123805"
-			     data-ad-format="auto"></ins>
-			<script>
-			(adsbygoogle = window.adsbygoogle || []).push({});
-			</script>
+		<!-- Example row of columns -->
+
+			<div class="row">
+
+				<div class="col-md-1 col-xs-12">
+				</div>
+
+				<div class="col-md-3 col-xs-12">
+					<h2>Rep</h2>
+					<p>&nbsp;</p>
+					<div id="detail">
+						<span></span>
+					</div>
+				</div>
+
+				<div class="col-md-1 col-xs-12">
+				</div>
+
+				<div class="col-md-3 col-xs-12">
+					<h2>With</h2>
+					<p>
+						<span id="repName">Your rep</span> voted most like
+					</p>
+					<div id="sim">
+						<span> </span>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-xs-12">
+
+					<h2>Against</h2>
+					<p>And voted least like</p>
+					<div id="dis">
+						<span> </span>
+
+					</div>
+				</div>
+				<div class="col-md-1 col-xs-12">
+				</div>
 			</div>
-      	</div>
-      </div>
-      <div class="row">
-        <div class="col-md-3 col-xs-12">
-          <h2>With</h2>
-          <p><span id="repName">Your rep</span> voted most like </p>
-          <div id="sim">
-          	<span>
-          	
-          	</span>
-          </div>          
-        </div>
-        <div class="col-md-1 col-xs-12"></div>
-        <div class="col-md-3 col-xs-12">
-          <h2>Against</h2>
-          <p>And voted least like</p>
-          <div id="dis">
-          	<span>
-          	
-          	</span>
-          </div>
-        </div>
-      </div>
+			<div class="row">
+				<div class="col-md-3 col-xs-12"></div>
+				<div class="col-md-3 col-xs-12"></div>
+			</div>
+	</div>
 
-      <hr>
-
-    </div> <!-- /container -->
+	<hr>
 
 
     <!-- Bootstrap core JavaScript

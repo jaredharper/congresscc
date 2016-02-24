@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+	showNewRepInfo("A000371");
 });
 
 function showReps() {
@@ -16,11 +16,16 @@ function showReps() {
 	});
 }
 
-function showNewRepInfo() {
+function showNewRepInfo(optionalId) {
 	
 	$("#detail").find('div').remove().end();
 	
-	var sourceId = $("#reps").val();
+	var sourceId;
+	if (optionalId)
+		sourceId = optionalId;
+	else
+		sourceId = $("#reps").val();
+	
 	var detail = "/detail?id=" + sourceId;
 	var jqId = '#' + sourceId;
 	$.getJSON(detail, function(response) {
@@ -55,7 +60,7 @@ function showNewRepInfo() {
 		
 	});
 	
-	var target = "/similarity?id=" + sourceId;
+	
 	$("#repName").text($("#reps").find(":selected").text());
 	
 	$("#sim").find('span').remove().end();
@@ -70,6 +75,8 @@ function showNewRepInfo() {
 		id: 'dis1'
 	}))
 	
+	
+	var target = "/similarity?id=" + sourceId;
 	$.getJSON(target, function(response) {
 		$.each(response, function(key, v) {
 			var count = 1;

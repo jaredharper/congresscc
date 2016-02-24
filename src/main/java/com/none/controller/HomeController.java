@@ -34,7 +34,9 @@ public class HomeController {
     public String home2(Model model)
     {
 		List<String> s = voteMap.getStates();
+		List<Legislator> r = voteMap.getReps("CA");
 		model.addAttribute("states", s);    	
+		model.addAttribute("reps",r);
     	return "home";
     }
     
