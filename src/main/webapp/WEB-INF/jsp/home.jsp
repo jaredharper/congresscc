@@ -58,47 +58,49 @@
 	<div class="container">
 		<!-- Example row of columns -->
 
-			<div class="row">
+		<div class="row">
 
-				<div class="col-md-1 col-xs-12">
-				</div>
+			<div class="col-md-1 col-xs-12"></div>
 
-				<div class="col-md-3 col-xs-12">
-					<h2>Rep</h2>
-					<p>&nbsp;</p>
-					<div id="detail">
-						<span></span>
-					</div>
-				</div>
-
-				<div class="col-md-1 col-xs-12">
-				</div>
-
-				<div class="col-md-3 col-xs-12">
-					<h2>With</h2>
-					<p>
-						<span id="repName">Your rep</span> voted most like
-					</p>
-					<div id="sim">
-						<span> </span>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-xs-12">
-
-					<h2>Against</h2>
-					<p>And voted least like</p>
-					<div id="dis">
-						<span> </span>
-
-					</div>
-				</div>
-				<div class="col-md-1 col-xs-12">
+			<div class="col-md-3 col-xs-12">
+				<h2>Rep</h2>
+				<p>&nbsp;</p>
+				<div id="detail">
+					<span></span>
 				</div>
 			</div>
-			<div class="row">
+
+			<div class="col-md-1 col-xs-12"></div>
+
 			<div class="col-md-3 col-xs-12">
-				<div class="col-md-12 col-xs-12">
+				<h2>With</h2>
+				<p>
+					<span id="repName">Your rep</span> voted most like
+				</p>
+				<div id="sim">
+					<span> </span>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-xs-12">
+
+				<h2>Against</h2>
+				<p>And voted least like</p>
+				<div id="dis">
+					<span> </span>
+
+				</div>
+			</div>
+			<div class="col-md-1 col-xs-12"></div>
+		</div>
+		<div class="row">
+
+			<div class="col-md-3 col-xs-12"></div>
+
+
+			<div class="col-md-7 col-xs-12">
+
+				<div style="width: 50%; margin: 0 auto">
 					<script async
 						src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 					<!-- second -->
@@ -109,16 +111,16 @@
 						(adsbygoogle = window.adsbygoogle || []).push({});
 					</script>
 				</div>
-			</div>
 
-			<div class="col-md-3 col-xs-12"></div>
 			</div>
+			<div class="col-md-2 col-xs-12"></div>
+		</div>
 	</div>
 
 	<hr>
 
 
-    <!-- Bootstrap core JavaScript
+	<!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
