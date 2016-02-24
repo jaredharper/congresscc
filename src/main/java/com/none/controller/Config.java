@@ -2,11 +2,13 @@ package com.none.controller;
 
 import java.net.URI;
 import java.sql.Driver;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -42,10 +44,27 @@ public class Config extends WebMvcConfigurerAdapter
 	{
 		try
 		{
-			DataSource datasource = new SimpleDriverDataSource(
-					(Driver)Class.forName("org.postgresql.Driver").newInstance(),
-					"jdbc:postgresql:congressthing", "postgres","password");
-			return datasource;
+			
+			// This returns null
+			String prop = System.getenv("HEROKU_POSTGRESQL_CONGRESS");
+			
+			// This doesn't
+			Map<String,String> p = System.getenv();
+			prop = p.get("HEROKU_POSTGRESQL_CONGRESS");
+			
+			// I am confused.
+	        URI dbUri = new URI(prop);
+
+	        String username = dbUri.getUserInfo().split(":")[0];
+	        String password = dbUri.getUserInfo().split(":")[1];
+	        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+
+	        BasicDataSource basicDataSource = new BasicDataSource();
+	        basicDataSource.setUrl(dbUrl);
+	        basicDataSource.setUsername(username);
+	        basicDataSource.setPassword(password);
+			
+			return basicDataSource;
 
 		} catch (Exception ex)
 		{
