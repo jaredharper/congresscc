@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,12 +32,15 @@ public class HomeController {
     }
     
     @RequestMapping("/")
-    public String home2(Model model)
+    public String home2(Model model, Device device)
     {
 		List<String> s = voteMap.getStates();
 		List<Legislator> r = voteMap.getReps("CA");
 		model.addAttribute("states", s);    	
 		model.addAttribute("reps",r);
+		model.addAttribute("isMobile",device.isMobile());
+		model.addAttribute("isTablet",device.isTablet());
+		model.addAttribute("isNormal",device.isNormal());
     	return "home";
     }
     

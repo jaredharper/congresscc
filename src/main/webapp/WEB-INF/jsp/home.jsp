@@ -74,7 +74,24 @@
 
 	<div class="container">
 		<!-- Example row of columns -->
-
+		<c:if test="${isNormal eq true}">
+		<div class="row">
+			<div class="col-md-12 col-xs-12">
+				<div style="width: 50%; margin: 0 auto">
+					<script async
+						src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- second -->
+					<ins class="adsbygoogle"
+						style="display: inline-block; width: 728px; height: 90px"
+						data-ad-client="ca-pub-2577969905607332" data-ad-slot="4847497007"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+			</div>
+			<div class="col-md-2 col-xs-12"></div>
+		</div>
+		</c:if>
 		<div class="row">
 
 			<div class="col-md-1 col-xs-12"></div>
@@ -107,23 +124,6 @@
 				</div>
 			</div>
 			<div class="col-md-1 col-xs-12"></div>
-		</div>
-		<div class="row">
-			<div class="col-md-3 col-xs-12"></div>
-			<div class="col-md-7 col-xs-12">
-				<div style="width: 50%; margin: 0 auto">
-					<script async
-						src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					<!-- second -->
-					<ins class="adsbygoogle"
-						style="display: inline-block; width: 728px; height: 90px"
-						data-ad-client="ca-pub-2577969905607332" data-ad-slot="4847497007"></ins>
-					<script>
-						(adsbygoogle = window.adsbygoogle || []).push({});
-					</script>
-				</div>
-			</div>
-			<div class="col-md-2 col-xs-12"></div>
 		</div>
 	</div>
 
