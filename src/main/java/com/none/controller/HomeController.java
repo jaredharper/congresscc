@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.none.mapper.VoteMapper;
 import com.none.pojo.Legislator;
+import com.none.pojo.LegislatorSummary;
 
 @Controller
 public class HomeController {
@@ -66,13 +67,15 @@ public class HomeController {
     @RequestMapping("/detail")
     @ResponseBody
     public String detail(@RequestParam String id)
-    {
+    {    	
     	return new Gson().toJson(voteMap.getDetail(id));
     }
     
     @RequestMapping(value = "/leg")
     public String detailPage(@RequestParam String id, Model model)
     {
+    	LegislatorSummary sum = voteMap.getSummary(id);
+    	model.addAttribute("summary",sum);
     	model.addAttribute("id",id);
     	return "detail";
     }

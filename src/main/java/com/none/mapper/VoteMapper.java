@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.none.pojo.Legislator;
+import com.none.pojo.LegislatorSummary;
 
 public interface VoteMapper
 {
@@ -24,5 +25,8 @@ public interface VoteMapper
 	
 	@Select("SELECT displayname as name, state, party FROM legislator3 WHERE legislator = #{id};")
 	Legislator getDetail(@Param("id") String id);
+	
+	@Select("SELECT success,demvotes,repvotes,bivote FROM cc2015repsummary WHERE id = #{id};")
+	LegislatorSummary getSummary(@Param("id") String id);
 
 }

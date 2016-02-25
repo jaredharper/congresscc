@@ -8,6 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:out value="id"></c:out>
+<c:out value="${id}" />
+<c:out value="${summary.success}" />
+<c:out value="${summary.demvotes}" />
+<c:out value="${summary.repvotes}" />
+<c:out value="${summary.bivote}" />
 </body>
 </html>
