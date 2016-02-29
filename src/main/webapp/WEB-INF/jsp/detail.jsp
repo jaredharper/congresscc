@@ -61,7 +61,7 @@ $(document).ready(function() {
 		<div class="container">
 			<h1>Congress Canvasser</h1>
 			<p>See who your congressional representatives vote with...and
-				against.  Start by selecting your state and representative.</p>
+				against.</p>
 			<p></p>
 		</div>
 	</div>
@@ -74,16 +74,14 @@ $(document).ready(function() {
 
 			<div class="col-md-2 col-xs-12">
 				<p><b>Success Rate:</b><br/></p>
-				<p>Bills passed/blocked.  Votes are counted only if they voted "yes" and it passed or voted "no" and it did not pass </p>
-				<div id="dis">
 				<h1><c:out value="${Math.round((summary.success * 1000) / 10)}%" /></h1>
-				</div>
+				<br/><p>Bills passed/blocked.  Votes are counted only if they voted "yes" and it passed or voted "no" and it did not pass </p>
 			</div>
 			<div class="col-md-3 col-xs-12">			
 				<img src="img/${id}.jpg" />	
 			</div>		
 			<div class="col-md-3 col-xs-12">			
-				<canvas id="vChart" width="350" height="200"></canvas>
+				<canvas id="vChart" width="300" height="200"></canvas>
 				<div id="vChartLegend"></div>			
 			</div>			
 			<div class="col-md-4 col-xs-12"></div>
