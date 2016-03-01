@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.none.pojo.Legislator;
 import com.none.pojo.LegislatorSummary;
@@ -37,5 +38,8 @@ public interface VoteMapper
 	
 	@Select("SELECT id,repvotes as count,displayname as name,party,state FROM cc2015repsummary,legislator3 WHERE id = legislator AND party = 'D' ORDER BY repvotes DESC LIMIT 3;")
 	List<Legislator> getTopThreeDem();
+	
+	@Update("UPDATE cc2015count SET count = count + 1 WHERE id = #{id}")
+	void updateCount(@Param("id") String id);
 
 }

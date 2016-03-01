@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Congress Canvasser</title>
+<title>con.gress</title>
 
 <script src="js/jquery-2.2.0.min.js"></script>
 <script src="js/Chart.min.js"></script>
@@ -104,7 +104,7 @@
 
 			<div class="col-md-12 col-xs-12">
 			<p>
-			Comments and questions?  <a href="mailto:acuminisoftware@gmail.com">Email.</a>
+			Comments or questions?  <a href="mailto:acuminisoftware@gmail.com">Email.</a>
 			</p>
 			</div>
 

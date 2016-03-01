@@ -41,6 +41,14 @@ public class HomeController {
     @RequestMapping(value = "/leg")
     public String detailPage(@RequestParam String id, Model model)
     {
+    	try
+    	{
+    		voteMap.updateCount(id);
+    	}
+    	catch (Exception ex)
+    	{
+    		Logger.getAnonymousLogger().log(Level.SEVERE, "Couldn't update count");
+    	}
     	LegislatorSummary sum = voteMap.getSummary(id);
     	model.addAttribute("summary",sum);
     	model.addAttribute("id",id);

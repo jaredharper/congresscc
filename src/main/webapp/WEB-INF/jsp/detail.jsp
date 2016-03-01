@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Congress Canvasser</title>
+<title>con.gress</title>
 
 <script src="js/jquery-2.2.0.min.js"></script>
 <script src="js/Chart.min.js"></script>
@@ -88,7 +88,7 @@ $(document).ready(function() {
 	<div class="col-md-12 col-xs-12 jumbotron">
 		<div class="container">
 			<h1>con.gress</h1>
-			<p>Detail view showing success and party line voting.  Success is counted as voting "yes" on a bill that passed or "no" on one that didn't</p>
+			<p>This detail view shows the win/loss ratio and party line voting.  A win is counted as voting "yes" on a bill that passed or "no" on one that didn't</p>
 			<p></p>
 		</div>
 	</div>
@@ -105,13 +105,13 @@ $(document).ready(function() {
 				<img src="img/${id}.jpg" />	
 			</div>
 
-			<div class="col-md-4 col-xs-6 center-block">
-				<p><b>Success Rate:</b><br/></p>
+			<div class="col-md-4 col-s-6 col-xs-12 center-block">
+				<p><b>Win/Loss Ratio:</b><br/></p>
 				<canvas id="sChart" width="300" height="200"></canvas>
 				<!-- <h1><c:out value="${Math.round((summary.success * 1000) / 10)}%" /></h1> -->				
 			</div>
 	
-			<div class="col-md-4 col-xs-6 center-block">			
+			<div class="col-md-4 col-s-6 col-xs-12 center-block">			
 				<p><b>Votes by party affiliation:</b></p>
 				<canvas id="vChart" width="300" height="200"></canvas>
 				<div id="vChartLegend"></div>			

@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Congress Canvasser</title>
+<title>con.gress</title>
 
 <script src="js/jquery-2.2.0.min.js"></script>
 <script src="js/Chart.min.js"></script>
@@ -103,7 +103,7 @@
 		<div class="row text-center">
 			<h2>Most successful</h2>
 			<c:forEach var="s" items="${top}">
-				<div class="col-md-4 col-xs-6 center-block">
+				<div class="col-md-4 col-sm-6 col-xs-12 center-block">
 					<img id="img${s.id}" src="img/${s.id}.jpg" style="cursor: pointer" onclick="window.open('/leg?id=${s.id}')">
 					<ul class="list-group center-block" style="width: 200px;">
 					<li class="list-group-item">name:${s.name}</li>
@@ -117,7 +117,7 @@
 		<div class="row text-center">
 			<h2>Most cooperative Republicans</h2>	
 			<c:forEach var="s" items="${rep}">
-				<div class="col-md-4 col-xs-6 center-block">
+				<div class="col-md-4 col-sm-6 col-xs-12 center-block">
 					<img id="img${s.id}" src="img/${s.id}.jpg" style="cursor: pointer" onclick="window.open('/leg?id=${s.id}')">
 					<ul class="list-group center-block" style="width: 200px;">
 					<li class="list-group-item">name:${s.name}</li>
@@ -131,7 +131,7 @@
 		<div class="row text-center">		
 			<h2>Most cooperative Democrats</h2>			
 			<c:forEach var="s" items="${dem}">
-				<div class="col-md-4 col-xs-6 center-block">
+				<div class="col-md-4 col-sm-6 col-xs-12 center-block">
 					<img id="img${s.id}" src="img/${s.id}.jpg" style="cursor: pointer" onclick="window.open('/leg?id=${s.id}')">
 					<ul class="list-group center-block" style="width: 200px;">
 					<li class="list-group-item">name:${s.name}</li>

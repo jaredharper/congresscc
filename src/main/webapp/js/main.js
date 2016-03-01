@@ -36,9 +36,9 @@ function showChart(dem,rep,bi,success) {
 		label : "Voted with Dem majority"
 	}, {
 		value : bi,
-		color : "#00FF00",
-		fillColor : "#00FF00",
-		highlight : "#00FF00",
+		color : "#F7FE2E",
+		fillColor : "#F7FE2E",
+		highlight : "#F7FE2E",
 		label : "Voted with bipartisan majority"
 	} ];
 	var ctx = $("#vChart").get(0).getContext("2d");
@@ -158,7 +158,7 @@ function showNewRepInfo(optionalId) {
 				// Parent div and the 200px portrait
 				$(parentId).append($('<div>',{
 				    id: v[i].id,
-				    'class' : 'col-md-4 col-xs-6'
+				    'class' : 'col-md-4 col-sm-6 col-xs-12'
 				}));				
 				$(jqId).append($('<img>', {
 					id: "img" + v[i].id,
