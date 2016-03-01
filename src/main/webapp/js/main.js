@@ -122,6 +122,7 @@ function showNewRepInfo(optionalId) {
 	// Get the sim/dim for the selected rep and
 	// populate their info as well
 	var target = "/similarity?id=" + sourceId;
+	var counter = 0;
 	$.getJSON(target, function(response) {
 		$.each(response, function(key, v) {
 			var count = 1;
@@ -133,8 +134,9 @@ function showNewRepInfo(optionalId) {
 				
 				// Parent div and the 200px portrait
 				$(parentId).append($('<div>',{
-				    id: v[i].id					    
-				}));
+				    id: v[i].id,
+				    'class' : 'col-md-4 col-xs-12'
+				}));				
 				$(jqId).append($('<img>', {
 					id: "img" + v[i].id,
 					src: "img/" + v[i].id + ".jpg",

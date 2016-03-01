@@ -83,9 +83,8 @@ $(document).ready(function() {
 		<div class="container">
 			<h1>con.gress</h1>
 			<p>See who your representatives vote with... and
-				against.  <br/><br/>Start by selecting your state and representative.
-				Displayed data is for 2015.  <br/><br/>Data for 2016 as well as previous years
-				will be added shortly.</p>
+				against.  Start by selecting your state and representative.
+				Displayed data is for all of 2015.</p>
 			<p>
 			<div >
 				<select class="dropdown" id="state" onchange="showReps()">
@@ -103,7 +102,6 @@ $(document).ready(function() {
 	</div>
 	</div>
 
-		<!-- Example row of columns -->
 		<c:if test="${isNormal eq true}">
 		<div class="row">
 			<div class="col-md-12 col-xs-12">
@@ -122,21 +120,19 @@ $(document).ready(function() {
 			<div class="col-md-2 col-xs-12"></div>
 		</div>
 		</c:if>
+		
 		<div class="row text-center">
-
-			<div class="col-md-1 col-xs-12 center-block"></div>
-
-			<div class="col-md-3 col-xs-12 center-block">
-				<h2>Rep</h2>
+			<div class="col-md-4 col-xs-12 center-block"></div>
+			<div class="col-md-4 col-xs-12 center-block">
 				<p>&nbsp;</p>
 				<div id="detail" class="center-block">
 					<span></span>
 				</div>
 			</div>
-
-			<div class="col-md-1 col-xs-12 center-block"></div>
-
-			<div class="col-md-3 col-xs-12 center-block">
+			<div class="col-md-4 col-xs-12 center-block"></div>
+		</div>		
+		<div class="row text-center">		
+			<div class="col-md-12 col-xs-12 center-block">
 				<h2>With</h2>
 				<p>
 					<span id="repName">Your rep</span> voted most like
@@ -144,21 +140,18 @@ $(document).ready(function() {
 				<div id="sim" class='center-block'>
 					<span> </span>
 				</div>
-			</div>
-
-			<div class="col-md-3 col-xs-12 center-block">
+			</div>		
+		</div>		
+		<div class="row text-center">		
+			<div class="col-md-12 col-xs-12 center-block">
 				<h2>Against</h2>
 				<p>And voted least like</p>
 				<div id="dis" class="center-block">
 				<span> </span>
 				</div>
-			</div>
-			<div class="col-md-1 col-xs-12 center-block"></div>
-		</div>
+			</div>		
+		</div>		
 	</div>
-
-	<hr>
-
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->

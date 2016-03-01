@@ -82,7 +82,6 @@
 	</div>
 	</div>
 
-		<!-- Example row of columns -->
 		<c:if test="${isNormal eq true}">
 		<div class="row">
 			<div class="col-md-12 col-xs-12">
