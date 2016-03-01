@@ -67,6 +67,16 @@ public class HomeController {
     	return "top";
     }
     
+    @RequestMapping(value = "/candidates")
+    public String compare(Model model)
+    {
+		List<String> s = voteMap.getStates();
+		List<Legislator> r = voteMap.getReps("CA");
+		model.addAttribute("states", s);   	
+    	model.addAttribute("reps",r);
+    	return "candidate";
+    }
+    
     @RequestMapping(value = "/about")
     public String aboutPage()
     {
@@ -94,6 +104,16 @@ public class HomeController {
     	HashMap<String, List<Legislator>> m = new HashMap<>();
     	m.put("sim", voteMap.getSims(id));
     	m.put("dis", voteMap.getDims(id));
+    	String response = new Gson().toJson(m);
+    	return response;
+    }
+    
+    @RequestMapping("/comparison")
+    @ResponseBody
+    public String candidates(@RequestParam String id)
+    {
+    	HashMap<String, List<Legislator>> m = new HashMap<>();
+    	m.put("sim", voteMap.getCandidates(id));
     	String response = new Gson().toJson(m);
     	return response;
     }

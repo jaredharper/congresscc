@@ -24,6 +24,9 @@ public interface VoteMapper
 	@Select("SELECT second as id, count, displayname as name, party, state from sm2015 join legislator3 on second = legislator where first = #{id} order by count asc limit 6")
 	List<Legislator> getDims(@Param("id") String id);
 	
+	@Select("SELECT second as id, count, displayname as name, party, state from sm2015 join legislator3 on second = legislator where first = #{id} and (legislator = 'S350' or legislator = 'S355' or legislator = 'S348' or legislator = 'S366'or legislator = 'S313') order by count asc limit 6;")
+	List<Legislator> getCandidates(@Param("id") String id);
+	
 	@Select("SELECT displayname as name, state, party FROM legislator3 WHERE legislator = #{id};")
 	Legislator getDetail(@Param("id") String id);
 	

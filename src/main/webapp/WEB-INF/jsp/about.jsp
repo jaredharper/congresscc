@@ -63,6 +63,7 @@
 		                        <ul class="nav navbar-nav">
 		                                <li><a href="/">Home</a></li>
 		                                <li><a href="/top">Top 3</a></li>
+		                                <li><a href="/candidates">Compare to 2016 candidates</a></li>
 		                                <li class="active"><a href="/about">About</a></li>
 		                                <li><a href="/contact">Contact</a></li>
 		                        </ul>

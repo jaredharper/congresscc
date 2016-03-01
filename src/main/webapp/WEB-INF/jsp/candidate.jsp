@@ -19,6 +19,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function() {
+	showNewRepInfo("S223","candidate");
+});
+</script>
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -63,9 +69,9 @@
 		                        <ul class="nav navbar-nav">
 		                                <li><a href="/">Home</a></li>
 		                                <li><a href="/top">Top 3</a></li>
-		                                <li><a href="/candidates">Compare to 2016 candidates</a></li>
+		                                <li class="active"><a href="/candidates">Compare to 2016 candidates</a></li>
 		                                <li><a href="/about">About</a></li>
-		                                <li class="active"><a href="/contact">Contact</a></li>
+		                                <li><a href="/contact">Contact</a></li>
 		                        </ul>
 		                </div>
 		        </div>
@@ -77,40 +83,44 @@
 	<div class="col-md-12 col-xs-12 jumbotron">
 		<div class="container">
 			<h1>con.gress</h1>
-			<p>See who your congressional representatives vote with...and
-				against.</p>
+			<p>Compare your representative to the current crop of Presidential candidates.
+				Displayed data is for all of 2015.</p>
+			<p>
+			<div>
+				<select class="dropdown" id="state" onchange="showReps(true)">
+					<option>state</option>
+					<c:forEach var="s" items="${states}">
+						<option>${s}</option>
+					</c:forEach>
+				</select>
+				<select  class="dropdown" id="reps" onchange="showNewRepInfo(0,'candidate')">
+				
+				</select>
+			</div>
 		</div>
 	</div>
 	</div>
-
-		<c:if test="${isNormal eq true}">
-		<div class="row">
-			<div class="col-md-12 col-xs-12">
-				<div style="width: 50%; margin: 0 auto">
-					<script async
-						src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					<!-- second -->
-					<ins class="adsbygoogle"
-						style="display: inline-block; width: 728px; height: 90px"
-						data-ad-client="ca-pub-2577969905607332" data-ad-slot="4847497007"></ins>
-					<script>
-						(adsbygoogle = window.adsbygoogle || []).push({});
-					</script>
+		<div class="row text-center">
+			<div class="col-md-4 col-xs-12 center-block"></div>
+			<div class="col-md-4 col-xs-12 center-block">
+				<p>&nbsp;</p>
+				<div id="detail" class="center-block">
+					<span></span>
 				</div>
 			</div>
-			<div class="col-md-2 col-xs-12"></div>
-		</div>
-		</c:if>
-		<div class="row">
-
-			<div class="col-md-12 col-xs-12">
-			<p>
-			Comments or questions?  <a href="mailto:acuminisoftware@gmail.com">Email.</a>
-			</p>
-			</div>
-
-		</div>
-
+			<div class="col-md-4 col-xs-12 center-block"></div>
+		</div>		
+		<div class="row text-center">		
+			<div class="col-md-12 col-xs-12 center-block">
+				<p>
+					<span id="repName">Your rep</span> compared to the candidates
+				</p>
+				<div id="sim" class='center-block'>
+					<span> </span>
+				</div>
+			</div>		
+		</div>				
+	</div>
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->

@@ -63,6 +63,7 @@
 		                        <ul class="nav navbar-nav">
 		                                <li><a href="/">Home</a></li>
 		                                <li class="active"><a href="/top">Top 3</a></li>
+		                                <li><a href="/candidates">Compare to 2016 candidates</a></li>
 		                                <li><a href="/about">About</a></li>
 		                                <li><a href="/contact">Contact</a></li>
 		                        </ul>
@@ -75,7 +76,7 @@
     <div class="row">
 	<div class="col-md-12 col-xs-12 jumbotron">
 		<div class="container">
-			<h1>con.gresss</h1>
+			<h1>con.gress</h1>
 			<p>The top three legislators based on success (most "yes" votes passing or "no" votes failing) and cooperation.</p>
 		</div>
 	</div>

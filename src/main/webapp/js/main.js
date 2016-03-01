@@ -3,16 +3,18 @@
  * available representatives based on the
  * selected state
  */
-function showReps() {
+function showReps(senateOnly) {
 	var state = $("#state").val();
 	$("#reps").find('option').remove().end();
 	$('#reps').append($('<option>'));
 	$.getJSON("/legislators?state=" + state, function(response) {
 		$.each(response, function(key, val) {
-			$('#reps').append($('<option>', {
-			    value: val.id,
-			    text: val.name
-			}));
+			if(((senateOnly == true) && (val.id.length == 4)) || senateOnly != true) {
+				$('#reps').append($('<option>', {
+				    value: val.id,
+				    text: val.name
+				}));				
+			}
 		});
 	});
 }
@@ -81,7 +83,7 @@ function openRepWindow(id) {
  * @param optionalId -
  *            optional id to prepopulate home page
  */
-function showNewRepInfo(optionalId) {
+function showNewRepInfo(optionalId, page) {
 	
 	// Clean out the old rep
 	$("#detail").find('div').remove().end();
@@ -144,7 +146,11 @@ function showNewRepInfo(optionalId) {
 	
 	// Get the sim/dim for the selected rep and
 	// populate their info as well
-	var target = "/similarity?id=" + sourceId;
+	var target;
+	if (page == "home")
+		target = "/similarity?id=" + sourceId;
+	else if (page == "candidate")
+		target = "/comparison?id=" + sourceId;
 	var counter = 0;
 	$.getJSON(target, function(response) {
 		$.each(response, function(key, v) {

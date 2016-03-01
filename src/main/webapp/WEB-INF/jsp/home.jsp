@@ -21,7 +21,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	showNewRepInfo("A000371");
+	showNewRepInfo("A000371","home");
 });
 </script>
 
@@ -69,6 +69,7 @@ $(document).ready(function() {
 		                        <ul class="nav navbar-nav">
 		                                <li class="active"><a href="/">Home</a></li>
 		                                <li><a href="/top">Top 3</a></li>
+		                                <li><a href="/candidates">Compare to 2016 candidates</a></li>
 		                                <li><a href="/about">About</a></li>
 		                                <li><a href="/contact">Contact</a></li>
 		                        </ul>
@@ -85,15 +86,15 @@ $(document).ready(function() {
 			<p>See who your representatives vote with... and
 				against.  Start by selecting your state and representative.
 				Displayed data is for all of 2015.</p>
-			<p>
+			<p>Click <a href="/candidates">here</a> to compare someone to one of the 2016 candidates (congressional members only)</p>
 			<div>
-				<select class="dropdown" id="state" onchange="showReps()">
+				<select class="dropdown" id="state" onchange="showReps(0)">
 					<option>state</option>
 					<c:forEach var="s" items="${states}">
 						<option>${s}</option>
 					</c:forEach>
 				</select>
-				<select  class="dropdown" id="reps" onchange="showNewRepInfo()">
+				<select  class="dropdown" id="reps" onchange="showNewRepInfo(0,'home')">
 				
 				</select>
 			</div>
