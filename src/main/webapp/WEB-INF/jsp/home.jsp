@@ -98,38 +98,38 @@ $(document).ready(function() {
 			<div class="col-md-2 col-xs-12"></div>
 		</div>
 		</c:if>
-		<div class="row">
+		<div class="row text-center">
 
-			<div class="col-md-1 col-xs-12"></div>
+			<div class="col-md-1 col-xs-12 center-block"></div>
 
-			<div class="col-md-3 col-xs-12">
+			<div class="col-md-3 col-xs-12 center-block">
 				<h2>Rep</h2>
 				<p>&nbsp;</p>
-				<div id="detail">
+				<div id="detail" class="center-block">
 					<span></span>
 				</div>
 			</div>
 
-			<div class="col-md-1 col-xs-12"></div>
+			<div class="col-md-1 col-xs-12 center-block"></div>
 
-			<div class="col-md-3 col-xs-12">
+			<div class="col-md-3 col-xs-12 center-block">
 				<h2>With</h2>
 				<p>
 					<span id="repName">Your rep</span> voted most like
 				</p>
-				<div id="sim">
+				<div id="sim" class='center-block'>
 					<span> </span>
 				</div>
 			</div>
 
-			<div class="col-md-3 col-xs-12">
+			<div class="col-md-3 col-xs-12 center-block">
 				<h2>Against</h2>
 				<p>And voted least like</p>
-				<div id="dis">
+				<div id="dis" class="center-block">
 				<span> </span>
 				</div>
 			</div>
-			<div class="col-md-1 col-xs-12"></div>
+			<div class="col-md-1 col-xs-12 center-block"></div>
 		</div>
 	</div>
 

@@ -81,7 +81,7 @@ function showNewRepInfo(optionalId) {
 		}));		
 		$(jqId).append($('<img>', {
 			src: "img/" + sourceId + ".jpg",
-			style: "cursor: pointer",
+			style: "cursor: pointer; class: center-block",
 			click: function() {
 				window.open("/leg?id=" + sourceId);
 			}
@@ -89,7 +89,7 @@ function showNewRepInfo(optionalId) {
 
 		// The chart containing their affiliation
 		var newElt = $('<ul/>',{
-			'class':'list-group',
+			'class':'list-group center-block',
 			width: '200px'
 		});
 		var a = [response.name, response.party,response.state];
@@ -148,7 +148,7 @@ function showNewRepInfo(optionalId) {
 				
 				// Chart containing their affiliation
 				var newElt = $('<ul/>',{
-					'class':'list-group',
+					'class':'list-group center-block',
 					width: '200px'
 				});
 				var a = [v[i].name, v[i].party,v[i].state,v[i].count / 2];
