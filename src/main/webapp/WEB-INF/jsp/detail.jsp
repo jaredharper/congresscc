@@ -72,15 +72,15 @@ $(document).ready(function() {
 		<!-- Example row of columns -->
 		<div class="row">
 
-			<div class="col-md-2 col-xs-12">
+			<div class="col-md-2 col-xs-12 span12 pagination-centered">
 				<p><b>Success Rate:</b><br/></p>
 				<h1><c:out value="${Math.round((summary.success * 1000) / 10)}%" /></h1>
 				<br/><p>Bills passed/blocked.  Votes are counted only if they voted "yes" and it passed or voted "no" and it did not pass </p>
 			</div>
-			<div class="col-md-3 col-xs-12">			
+			<div class="col-md-3 col-xs-12 span12 pagination-centered">			
 				<img src="img/${id}.jpg" />	
 			</div>		
-			<div class="col-md-3 col-xs-12">			
+			<div class="col-md-3 col-xs-12 span12 pagination-centered">			
 				<canvas id="vChart" width="300" height="200"></canvas>
 				<div id="vChartLegend"></div>			
 			</div>			
