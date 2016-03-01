@@ -86,7 +86,7 @@ $(document).ready(function() {
 				against.  Start by selecting your state and representative.
 				Displayed data is for all of 2015.</p>
 			<p>
-			<div >
+			<div>
 				<select class="dropdown" id="state" onchange="showReps()">
 					<option>state</option>
 					<c:forEach var="s" items="${states}">
@@ -97,30 +97,9 @@ $(document).ready(function() {
 				
 				</select>
 			</div>
-			</p>
 		</div>
 	</div>
 	</div>
-
-		<c:if test="${isNormal eq true}">
-		<div class="row">
-			<div class="col-md-12 col-xs-12">
-				<div style="width: 50%; margin: 0 auto">
-					<script async
-						src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					<!-- second -->
-					<ins class="adsbygoogle"
-						style="display: inline-block; width: 728px; height: 90px"
-						data-ad-client="ca-pub-2577969905607332" data-ad-slot="4847497007"></ins>
-					<script>
-						(adsbygoogle = window.adsbygoogle || []).push({});
-					</script>
-				</div>
-			</div>
-			<div class="col-md-2 col-xs-12"></div>
-		</div>
-		</c:if>
-		
 		<div class="row text-center">
 			<div class="col-md-4 col-xs-12 center-block"></div>
 			<div class="col-md-4 col-xs-12 center-block">

@@ -25,16 +25,19 @@ function showChart(dem,rep,bi,success) {
 	var voteData = [ {
 		value : rep,
 		color : "#FF0000",
+		fillColor: "#FF0000",
 		highlight : "#FF0000",
 		label : "Voted with GOP majoirty"
 	}, {
 		value : dem,
 		color : "#4000FF",
+		fillColor : "#4000FF",
 		highlight : "#4000FF",
 		label : "Voted with Dem majority"
 	}, {
 		value : bi,
 		color : "#00FF00",
+		fillColor : "#00FF00",
 		highlight : "#00FF00",
 		label : "Voted with bipartisan majority"
 	} ];
@@ -43,6 +46,25 @@ function showChart(dem,rep,bi,success) {
 	    animation: true,
 	    animationSteps: 60
 	});	
+
+	var remainder = 100 - success;
+	var sData = [ {
+		value : success,
+		color : "#00FF00",
+		highlight : "#00FF00",
+		label : "% Won"
+	}, {
+		value : remainder,
+		color : "#000000",
+		highlight : "#000000",
+		label : "% Lost"
+	}];
+	var sChart = $("#sChart").get(0).getContext("2d");
+	var myBarChart = new Chart(sChart).Pie(sData, {
+		animation: true
+	});
+
+	
 }
 
 function openRepWindow(id) {
@@ -56,7 +78,8 @@ function openRepWindow(id) {
  * 
  * TODO refactor horrid abomination into something else
  * 
- * @param optionalId - optional id to prepopulate home page
+ * @param optionalId -
+ *            optional id to prepopulate home page
  */
 function showNewRepInfo(optionalId) {
 	
@@ -135,7 +158,7 @@ function showNewRepInfo(optionalId) {
 				// Parent div and the 200px portrait
 				$(parentId).append($('<div>',{
 				    id: v[i].id,
-				    'class' : 'col-md-4 col-xs-12'
+				    'class' : 'col-md-4 col-xs-6'
 				}));				
 				$(jqId).append($('<img>', {
 					id: "img" + v[i].id,

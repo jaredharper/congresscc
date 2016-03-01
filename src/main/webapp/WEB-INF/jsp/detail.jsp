@@ -15,13 +15,15 @@
 <script src="js/Chart.min.js"></script>
 <script src="js/main.js"></script>
 
+<link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
-	showChart(${summary.demvotes},${summary.repvotes},${summary.bivote});
+	var s = Math.round((${summary.success} * 1000) / 10);
+	showChart(${summary.demvotes},${summary.repvotes},${summary.bivote},s);
 });
 </script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -97,23 +99,24 @@ $(document).ready(function() {
 
 		<div class="row text-center">
 
-			<div class="col-md-2 col-xs-12"></div>
-			
+			<div class="col-md-1 col-xs-12"></div>
+
 			<div class="col-md-3 col-xs-12 center-block">			
 				<img src="img/${id}.jpg" />	
 			</div>
 
-			<div class="col-md-2 col-xs-12 center-block">
-				<br/><br/>
+			<div class="col-md-4 col-xs-6 center-block">
 				<p><b>Success Rate:</b><br/></p>
-				<h1><c:out value="${Math.round((summary.success * 1000) / 10)}%" /></h1>				
+				<canvas id="sChart" width="300" height="200"></canvas>
+				<!-- <h1><c:out value="${Math.round((summary.success * 1000) / 10)}%" /></h1> -->				
 			</div>
 	
-			<div class="col-md-3 col-xs-12 center-block">			
+			<div class="col-md-4 col-xs-6 center-block">			
+				<p><b>Votes by party affiliation:</b></p>
 				<canvas id="vChart" width="300" height="200"></canvas>
 				<div id="vChartLegend"></div>			
-			</div>			
-			<div class="col-md-2 col-xs-12"></div>
+			</div>		
+			
 		</div>
 	</div>
 
