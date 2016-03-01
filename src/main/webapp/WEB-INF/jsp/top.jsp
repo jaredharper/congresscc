@@ -19,12 +19,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function() {
-	showNewRepInfo("A000371");
-});
-</script>
-
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -67,8 +61,8 @@ $(document).ready(function() {
 		                </div>
 		                <div class="navbar-collapse collapse">
 		                        <ul class="nav navbar-nav">
-		                                <li class="active"><a href="/">Home</a></li>
-		                                <li><a href="/top">Top 3</a></li>
+		                                <li><a href="/">Home</a></li>
+		                                <li class="active"><a href="/top">Top 3</a></li>
 		                                <li><a href="/about">About</a></li>
 		                                <li><a href="/contact">Contact</a></li>
 		                        </ul>
@@ -81,24 +75,8 @@ $(document).ready(function() {
     <div class="row">
 	<div class="col-md-12 col-xs-12 jumbotron">
 		<div class="container">
-			<h1>con.gress</h1>
-			<p>See who your representatives vote with... and
-				against.  <br/><br/>Start by selecting your state and representative.
-				Displayed data is for 2015.  <br/><br/>Data for 2016 as well as previous years
-				will be added shortly.</p>
-			<p>
-			<div >
-				<select class="dropdown" id="state" onchange="showReps()">
-					<option>state</option>
-					<c:forEach var="s" items="${states}">
-						<option>${s}</option>
-					</c:forEach>
-				</select>
-				<select  class="dropdown" id="reps" onchange="showNewRepInfo()">
-				
-				</select>
-			</div>
-			</p>
+			<h1>con.gresss</h1>
+			<p>The top three legislators based on success (most "yes" votes passing or "no" votes failing) and cooperation.</p>
 		</div>
 	</div>
 	</div>
@@ -122,43 +100,50 @@ $(document).ready(function() {
 			<div class="col-md-2 col-xs-12"></div>
 		</div>
 		</c:if>
+		
 		<div class="row text-center">
-
-			<div class="col-md-1 col-xs-12 center-block"></div>
-
-			<div class="col-md-3 col-xs-12 center-block">
-				<h2>Rep</h2>
-				<p>&nbsp;</p>
-				<div id="detail" class="center-block">
-					<span></span>
+			<h2>Most successful</h2>
+			<c:forEach var="s" items="${top}">
+				<div class="col-md-4 col-xs-12 center-block">
+					<img id="img${s.id}" src="img/${s.id}.jpg" style="cursor: pointer" onclick="window.open('/leg?id=${s.id}')">
+					<ul class="list-group center-block" style="width: 200px;">
+					<li class="list-group-item">name:${s.name}</li>
+					<li class="list-group-item">party:${s.party}</li>
+					<li class="list-group-item">state:${s.state}</li>
+					<li class="list-group-item">success:${Math.round((Double.parseDouble(s.count) * 1000) / 10)}%</li>
+					</ul>
 				</div>
-			</div>
-
-			<div class="col-md-1 col-xs-12 center-block"></div>
-
-			<div class="col-md-3 col-xs-12 center-block">
-				<h2>With</h2>
-				<p>
-					<span id="repName">Your rep</span> voted most like
-				</p>
-				<div id="sim" class='center-block'>
-					<span> </span>
+			</c:forEach>
+		</div>
+		<div class="row text-center">
+			<h2>Most cooperative Republicans</h2>	
+			<c:forEach var="s" items="${rep}">
+				<div class="col-md-4 col-xs-12 center-block">
+					<img id="img${s.id}" src="img/${s.id}.jpg" style="cursor: pointer" onclick="window.open('/leg?id=${s.id}')">
+					<ul class="list-group center-block" style="width: 200px;">
+					<li class="list-group-item">name:${s.name}</li>
+					<li class="list-group-item">party:${s.party}</li>
+					<li class="list-group-item">state:${s.state}</li>
+					<li class="list-group-item">voted with Democrats:${s.count}</li>
+					</ul>
 				</div>
-			</div>
-
-			<div class="col-md-3 col-xs-12 center-block">
-				<h2>Against</h2>
-				<p>And voted least like</p>
-				<div id="dis" class="center-block">
-				<span> </span>
+			</c:forEach>
+		</div>
+		<div class="row text-center">		
+			<h2>Most cooperative Democrats</h2>			
+			<c:forEach var="s" items="${dem}">
+				<div class="col-md-4 col-xs-12 center-block">
+					<img id="img${s.id}" src="img/${s.id}.jpg" style="cursor: pointer" onclick="window.open('/leg?id=${s.id}')">
+					<ul class="list-group center-block" style="width: 200px;">
+					<li class="list-group-item">name:${s.name}</li>
+					<li class="list-group-item">party:${s.party}</li>
+					<li class="list-group-item">state:${s.state}</li>
+					<li class="list-group-item">voted with Republicans:${s.count}</li>
+					</ul>
 				</div>
-			</div>
-			<div class="col-md-1 col-xs-12 center-block"></div>
+			</c:forEach>
 		</div>
 	</div>
-
-	<hr>
-
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->

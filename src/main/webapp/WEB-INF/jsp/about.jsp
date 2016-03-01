@@ -19,11 +19,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function() {
-	showChart(${summary.demvotes},${summary.repvotes},${summary.bivote});
-});
-</script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -50,70 +45,76 @@ $(document).ready(function() {
 
 </head>
 <body>
-	<input type="hidden" value="${summary.demvotes}" id="demvotes"> 
-	<input type="hidden" value="${summary.repvotes}" id="repvotes">
-	<input type="hidden" value="${summary.bivote}" id="bivote">
-    
     <div class="container">
-
+    
     <div class="row navbar-wrapper">
                 
-                        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
-                                <div class="container">
-                                        <div class="navbar-header">
-                                                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                                        data-target=".navbar-collapse">
-                                                        <span class="sr-only">Toggle navigation</span> <span
-                                                                class="icon-bar"></span> <span class="icon-bar"></span> <span
-                                                                class="icon-bar"></span>
-                                                </button>
-                                        </div>
-                                        <div class="navbar-collapse collapse">
-                                                <ul class="nav navbar-nav">
-                                                        <li class="active"><a href="/">Home</a></li>
-                                                        <li><a href="/top">Top 3</a></li>
-                                                        <li><a href="/about">About</a></li>
-                                                        <li><a href="/contact">Contact</a></li>
-                                                </ul>
-                                        </div>
-                                </div>
-                        </div>
-
-                
-    </div>
+		<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+		        <div class="container">
+		                <div class="navbar-header">
+		                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+		                                data-target=".navbar-collapse">
+		                                <span class="sr-only">Toggle navigation</span> <span
+		                                        class="icon-bar"></span> <span class="icon-bar"></span> <span
+		                                        class="icon-bar"></span>
+		                        </button>
+		                </div>
+		                <div class="navbar-collapse collapse">
+		                        <ul class="nav navbar-nav">
+		                                <li><a href="/">Home</a></li>
+		                                <li><a href="/top">Top 3</a></li>
+		                                <li class="active"><a href="/about">About</a></li>
+		                                <li><a href="/contact">Contact</a></li>
+		                        </ul>
+		                </div>
+		        </div>
+               
+		</div>
+    </div>      
     
     <div class="row">
 	<div class="col-md-12 col-xs-12 jumbotron">
 		<div class="container">
 			<h1>con.gress</h1>
-			<p>Detail view showing success and party line voting.</p>
-			<p></p>
+			<p>See who your congressional representatives vote with...and
+				against.</p>
 		</div>
 	</div>
 	</div>
-	</div>
 
-	<div class="container">
 		<!-- Example row of columns -->
-		<div class="row text-center">
-
+		<c:if test="${isNormal eq true}">
+		<div class="row">
+			<div class="col-md-12 col-xs-12">
+				<div style="width: 50%; margin: 0 auto">
+					<script async
+						src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- second -->
+					<ins class="adsbygoogle"
+						style="display: inline-block; width: 728px; height: 90px"
+						data-ad-client="ca-pub-2577969905607332" data-ad-slot="4847497007"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+			</div>
 			<div class="col-md-2 col-xs-12"></div>
-			
-			<div class="col-md-3 col-xs-12 center-block">			
-				<img src="img/${id}.jpg" />	
+		</div>
+		</c:if>
+		<div class="row">
+
+			<div class="col-md-12 col-xs-12">
+			<h2>About the site</h2>
+			<p>
+			Con.gress was conceived and built as a tool to empower voters.  It allows anyone to see, at a glance, how their
+			representative votes.  Not just whether they vote along party lines, but the individual representatives they vote most (and least) like.
+			</p>
+			<p>
+			The site is currently in alpha, with 2015 data loaded and a limited subset of its features pubilcally available.  Check back
+			this week (March 1-4) to see new features and data as they are phased in.  
+			</p>
 			</div>
 
-			<div class="col-md-2 col-xs-12 center-block">
-				<p><b>Success Rate:</b><br/></p>
-				<h1><c:out value="${Math.round((summary.success * 1000) / 10)}%" /></h1>
-				<br/><p>Bills passed/blocked.  Votes are counted only if they voted "yes" and it passed or voted "no" and it did not pass </p>
-			</div>
-	
-			<div class="col-md-3 col-xs-12 center-block">			
-				<canvas id="vChart" width="300" height="200"></canvas>
-				<div id="vChartLegend"></div>			
-			</div>			
-			<div class="col-md-2 col-xs-12"></div>
 		</div>
 	</div>
 

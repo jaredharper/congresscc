@@ -28,5 +28,14 @@ public interface VoteMapper
 	
 	@Select("SELECT success,demvotes,repvotes,bivote FROM cc2015repsummary WHERE id = #{id};")
 	LegislatorSummary getSummary(@Param("id") String id);
+	
+	@Select("SELECT id,success as count,displayname as name,party FROM cc2015repsummary,legislator3 WHERE id = legislator ORDER BY success DESC LIMIT 3;")
+	List<Legislator> getTopThreeSuccess();
+	
+	@Select("SELECT id,demvotes as count,displayname as name,party FROM cc2015repsummary,legislator3 WHERE id = legislator AND party = 'R' ORDER BY demvotes DESC LIMIT 3;")
+	List<Legislator> getTopThreeRep();
+	
+	@Select("SELECT id,repvotes as count,displayname as name,party FROM cc2015repsummary,legislator3 WHERE id = legislator AND party = 'D' ORDER BY repvotes DESC LIMIT 3;")
+	List<Legislator> getTopThreeDem();
 
 }

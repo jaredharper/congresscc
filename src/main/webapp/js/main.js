@@ -54,9 +54,9 @@ function openRepWindow(id) {
  * their information, then get their sim/dims from the similarity matrix and
  * display those as well
  * 
- * TODO refactor
+ * TODO refactor horrid abomination into something else
  * 
- * @param optionalId
+ * @param optionalId - optional id to prepopulate home page
  */
 function showNewRepInfo(optionalId) {
 	
@@ -106,7 +106,7 @@ function showNewRepInfo(optionalId) {
 		
 	});
 	
-	// Clean out old sim/dim
+	// Clean out old similar/dissimilar elements
 	$("#sim").find('span').remove().end();
 	$("#sim").find('br').remove().end();
 	$("#dis").find('span').remove().end();

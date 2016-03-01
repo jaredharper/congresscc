@@ -24,13 +24,6 @@ public class HomeController {
 	
 	@Autowired
 	VoteMapper voteMap;
-	
-    @RequestMapping("/home")
-    @ResponseBody
-    public String home() 
-    {
-        return "Hello World!";
-    }
     
     @RequestMapping("/")
     public String home2(Model model, Device device)
@@ -43,6 +36,39 @@ public class HomeController {
 		model.addAttribute("isTablet",device.isTablet());
 		model.addAttribute("isNormal",device.isNormal());
     	return "home";
+    }
+
+    @RequestMapping(value = "/leg")
+    public String detailPage(@RequestParam String id, Model model)
+    {
+    	LegislatorSummary sum = voteMap.getSummary(id);
+    	model.addAttribute("summary",sum);
+    	model.addAttribute("id",id);
+    	return "detail";
+    }
+    
+    @RequestMapping(value = "/top")
+    public String topPage(Model model)
+    {
+    	List<Legislator> success = voteMap.getTopThreeSuccess();
+    	List<Legislator> rep = voteMap.getTopThreeRep();
+    	List<Legislator> dem = voteMap.getTopThreeDem();
+    	model.addAttribute("top",success);
+    	model.addAttribute("rep",rep);
+    	model.addAttribute("dem",dem);
+    	return "top";
+    }
+    
+    @RequestMapping(value = "/about")
+    public String aboutPage()
+    {
+    	return "about";
+    }
+    
+    @RequestMapping(value = "/contact")
+    public String contactPage()
+    {
+    	return "contact";
     }
     
     @RequestMapping("/legislators")
@@ -69,15 +95,6 @@ public class HomeController {
     public String detail(@RequestParam String id)
     {    	
     	return new Gson().toJson(voteMap.getDetail(id));
-    }
-    
-    @RequestMapping(value = "/leg")
-    public String detailPage(@RequestParam String id, Model model)
-    {
-    	LegislatorSummary sum = voteMap.getSummary(id);
-    	model.addAttribute("summary",sum);
-    	model.addAttribute("id",id);
-    	return "detail";
     }
     
 }
