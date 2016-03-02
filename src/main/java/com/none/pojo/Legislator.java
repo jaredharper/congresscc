@@ -1,5 +1,13 @@
 package com.none.pojo;
 
+/**
+ * POJO for a Legislator.  This contains their
+ * id, name, party and state as well as a "count"
+ * value for various votes/tallies/etc.
+ * 
+ * @author jthomas
+ *
+ */
 public class Legislator
 {
 	private String id,name,count,party,state;

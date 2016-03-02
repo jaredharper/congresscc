@@ -19,12 +19,28 @@ import com.none.mapper.VoteMapper;
 import com.none.pojo.Legislator;
 import com.none.pojo.LegislatorSummary;
 
+/**
+ * This class maps relative URLs to their
+ * corresponding backend components and/or their
+ * matching views (JSPs)
+ * 
+ * @author jthomas
+ *
+ */
 @Controller
 public class HomeController {
 	
 	@Autowired
 	VoteMapper voteMap;
     
+	/**
+	 * Mapping and data preload for the home page view
+	 * 
+	 * @param model - Object to store preloaded data used by the JSP when rendering
+	 * @param device - Spring object to determine mobile/desktop/etc
+	 * 
+	 * @return - String name of view to display
+	 */
     @RequestMapping("/")
     public String home2(Model model, Device device)
     {
@@ -38,6 +54,11 @@ public class HomeController {
     	return "home";
     }
 
+    /**
+     * Mapping and data preload for the legislator's detail view
+     * 
+     * @param id - GET/POST variable containing the legislator's id
+     */
     @RequestMapping(value = "/leg")
     public String detailPage(@RequestParam String id, Model model)
     {
@@ -55,6 +76,10 @@ public class HomeController {
     	return "detail";
     }
     
+    /**
+     * Mapping and data preload for the "top 3" view
+     * 
+     */
     @RequestMapping(value = "/top")
     public String topPage(Model model)
     {
@@ -67,6 +92,10 @@ public class HomeController {
     	return "top";
     }
     
+    /**
+     * Mapping and data preload for the 2016 Presidental candidate comparison view 
+     * 
+     */
     @RequestMapping(value = "/candidates")
     public String compare(Model model)
     {
@@ -77,18 +106,34 @@ public class HomeController {
     	return "candidate";
     }
     
+    /**
+     * Mapping for the "about this site" view
+     * 
+     */
     @RequestMapping(value = "/about")
     public String aboutPage()
     {
     	return "about";
     }
     
+    /**
+     * Mapping for the "contact page" view
+     * 
+     */
     @RequestMapping(value = "/contact")
     public String contactPage()
     {
     	return "contact";
     }
     
+    /**
+     * Mapping for the service endpoint that provides a list
+     * of legislators by state
+     * 
+     * @param state - only show reps from this state
+     *  
+     * @return JSONized list of com.none.pojo.Legislator objects
+     */
     @RequestMapping("/legislators")
     @ResponseBody
     public String legislators(@RequestParam String state)
@@ -97,6 +142,14 @@ public class HomeController {
     	return response;
     }
     
+    /**
+     * Service endpoint that gets legislators most and least like the 
+     * identified legislator
+     * 
+     * @param id - id of legislator to be compared
+     * 
+     * @return JSONized list of com.none.pojo.Legislator objects
+     */
     @RequestMapping("/similarity")
     @ResponseBody
     public String similarity(@RequestParam String id)
@@ -108,6 +161,13 @@ public class HomeController {
     	return response;
     }
     
+    /**
+     * Service endpoint for the "presidential candidates of 2016" comparison
+     * 
+     * @param id - id of legislator to be compared
+     * 
+     * @return JSONized list of com.none.pojo.Legislator objects
+     */
     @RequestMapping("/comparison")
     @ResponseBody
     public String candidates(@RequestParam String id)
@@ -118,6 +178,13 @@ public class HomeController {
     	return response;
     }
     
+    /**
+     * Service endpoint for getting a single legislator's detailed information
+     * 
+     * @param id - id of legislator
+     * 
+     * @return JSONized representation of a com.none.pojo.Legislator object
+     */
     @RequestMapping("/detail")
     @ResponseBody
     public String detail(@RequestParam String id)

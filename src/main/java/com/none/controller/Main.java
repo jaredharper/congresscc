@@ -6,6 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
+/**
+ * This starts the Spring Boot application
+ * 
+ * @author jthomas
+ *
+ */
 @EnableAutoConfiguration
 @SpringBootApplication
 @ComponentScan("com.none")

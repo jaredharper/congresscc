@@ -20,16 +20,21 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+/**
+ * Class to create beans for Spring Boot's automagic configuration logic
+ * 
+ * @author jthomas
+ *
+ */
 @Configuration
 @MapperScan("com.none.mapper")
 public class Config extends WebMvcConfigurerAdapter
 {
 
-	URI dbUri;
-
-	SqlSessionFactory f;
-
-	// Will map to the JSP page: "WEB-INF/views/accounts/list.jsp"
+	/**
+	 * Will map to the views in: "WEB-INF/views/accounts/*.jsp"
+	 * 
+	 */
 	@Bean
 	public ViewResolver getJspViewResolver()
 	{
@@ -39,6 +44,11 @@ public class Config extends WebMvcConfigurerAdapter
 		return resolver;
 	}
 
+	/**
+	 * Configures the data source (in this case, our postgres db)
+	 * 
+	 * @return
+	 */
 	@Bean
 	public DataSource getDataSource()
 	{
@@ -73,7 +83,11 @@ public class Config extends WebMvcConfigurerAdapter
 		}
 	}
 
-
+	/**
+	 * Configures the object that mapper use to access our data source
+	 * 
+	 * @return
+	 */
 	@Bean
 	public SqlSessionFactory getSqlSessionFactory()
 	{
@@ -89,6 +103,10 @@ public class Config extends WebMvcConfigurerAdapter
 		}
 	}
 
+	/**
+	 * Basic servlet mapping config
+	 * 
+	 */
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer)
 	{

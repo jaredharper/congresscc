@@ -1,5 +1,13 @@
 package com.none.pojo;
 
+/**
+ * POJO for a Legislator's vote summary.  It contains
+ * their id, success (0.0-1.0), and the number of times
+ * they voted with dem/gop/bi majorities.
+ * 
+ * @author jthomas
+ *
+ */
 public class LegislatorSummary
 {
 	String id;
