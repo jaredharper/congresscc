@@ -134,9 +134,9 @@ public class HomeController {
      *  
      * @return JSONized list of com.none.pojo.Legislator objects
      */
-    @RequestMapping("/legislators")
+    @RequestMapping("/legislators/{state}")
     @ResponseBody
-    public String legislators(@RequestParam String state)
+    public String legislators(@PathVariable String state)
     {
     	String response = new Gson().toJson(voteMap.getReps(state));
     	return response;
@@ -150,9 +150,9 @@ public class HomeController {
      * 
      * @return JSONized list of com.none.pojo.Legislator objects
      */
-    @RequestMapping("/similarity")
+    @RequestMapping("/similarity/{id}")
     @ResponseBody
-    public String similarity(@RequestParam String id)
+    public String similarity(@PathVariable String id)
     {
     	HashMap<String, List<Legislator>> m = new HashMap<>();
     	m.put("sim", voteMap.getSims(id));
@@ -168,9 +168,9 @@ public class HomeController {
      * 
      * @return JSONized list of com.none.pojo.Legislator objects
      */
-    @RequestMapping("/comparison")
+    @RequestMapping("/comparison/{id}")
     @ResponseBody
-    public String candidates(@RequestParam String id)
+    public String candidates(@PathVariable String id)
     {
     	HashMap<String, List<Legislator>> m = new HashMap<>();
     	m.put("sim", voteMap.getCandidates(id));
@@ -185,9 +185,9 @@ public class HomeController {
      * 
      * @return JSONized representation of a com.none.pojo.Legislator object
      */
-    @RequestMapping("/detail")
+    @RequestMapping("/detail/{id}")
     @ResponseBody
-    public String detail(@RequestParam String id)
+    public String detail(@PathVariable String id)
     {    	
     	return new Gson().toJson(voteMap.getDetail(id));
     }

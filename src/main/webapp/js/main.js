@@ -7,7 +7,7 @@ function showReps(senateOnly) {
 	var state = $("#state").val();
 	$("#reps").find('option').remove().end();
 	$('#reps').append($('<option>'));
-	$.getJSON("/legislators?state=" + state, function(response) {
+	$.getJSON("/legislators/" + state, function(response) {
 		$.each(response, function(key, val) {
 			if(((senateOnly == true) && (val.id.length == 4)) || senateOnly != true) {
 				$('#reps').append($('<option>', {
@@ -96,7 +96,7 @@ function showNewRepInfo(optionalId, page) {
 		sourceId = $("#reps").val();
 	
 	// ajax call to populate the rep's data
-	var detail = "/detail?id=" + sourceId;
+	var detail = "/detail/" + sourceId;
 	var jqId = '#' + sourceId;
 	$.getJSON(detail, function(response) {
 		
@@ -148,9 +148,9 @@ function showNewRepInfo(optionalId, page) {
 	// populate their info as well
 	var target;
 	if (page == "home")
-		target = "/similarity?id=" + sourceId;
+		target = "/similarity/" + sourceId;
 	else if (page == "candidate")
-		target = "/comparison?id=" + sourceId;
+		target = "/comparison/" + sourceId;
 	var counter = 0;
 	$.getJSON(target, function(response) {
 		$.each(response, function(key, v) {
