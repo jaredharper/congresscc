@@ -28,22 +28,29 @@ public class SaraController
 	{
     	return new Gson().toJson(voteMap.getStates());
 	}
+
+	@RequestMapping("/years")
+	@ResponseBody
+	public String getYears()
+	{
+    	return new Gson().toJson(voteMap.getYears());
+	}
 	
 	@RequestMapping("/summary/{id}")
 	@ResponseBody
-	public String getSummary(@PathVariable String id)
+	public String getSummary(@PathVariable String id, @PathVariable Integer year)
 	{
-		return new Gson().toJson(voteMap.getSummary(id));
+		return new Gson().toJson(voteMap.getSummary(id,year));
 	}	
 	
 	@RequestMapping("/top3")
 	@ResponseBody
-	public String getTopThree()
+	public String getTopThree(@PathVariable Integer year)
 	{
 		HashMap<String, List<?>> tops = new HashMap<>();
-		tops.put("success", voteMap.getTopThreeSuccess());
-		tops.put("topGOP", voteMap.getTopThreeRep());
-		tops.put("topDEM", voteMap.getTopThreeDem());
+		tops.put("success", voteMap.getTopThreeSuccess(year));
+		tops.put("topGOP", voteMap.getTopThreeRep(year));
+		tops.put("topDEM", voteMap.getTopThreeDem(year));
 		return new Gson().toJson(tops);
 
 	}

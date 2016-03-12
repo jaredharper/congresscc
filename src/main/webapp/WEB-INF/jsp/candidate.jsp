@@ -87,6 +87,11 @@ $(document).ready(function() {
 				Displayed data is for all of 2015.</p>
 			<p>
 			<div>
+				<select class="dropdown" id="year" onchange="showReps(true)">
+					<c:forEach var="y" items="#{years}">
+						<option>${y}</option>
+					</c:forEach>
+				</select>
 				<select class="dropdown" id="state" onchange="showReps(true)">
 					<option>state</option>
 					<c:forEach var="s" items="${states}">

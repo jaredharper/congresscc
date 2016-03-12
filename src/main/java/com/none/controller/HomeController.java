@@ -45,8 +45,10 @@ public class HomeController {
     public String home2(Model model, Device device)
     {
 		List<String> s = voteMap.getStates();
-		List<Legislator> r = voteMap.getReps("CA");
+		List<String> y = voteMap.getYears();
+		List<Legislator> r = voteMap.getReps("CA",2015);
 		model.addAttribute("states", s);    	
+		model.addAttribute("years", y);
 		model.addAttribute("reps",r);
 		model.addAttribute("isMobile",device.isMobile());
 		model.addAttribute("isTablet",device.isTablet());
@@ -60,7 +62,7 @@ public class HomeController {
      * @param id - GET/POST variable containing the legislator's id
      */
     @RequestMapping(value = "/leg")
-    public String detailPage(@RequestParam String id, Model model)
+    public String detailPage(@RequestParam String id, @RequestParam Integer year, Model model)
     {
     	try
     	{
@@ -70,9 +72,11 @@ public class HomeController {
     	{
     		Logger.getAnonymousLogger().log(Level.SEVERE, "Couldn't update count");
     	}
-    	LegislatorSummary sum = voteMap.getSummary(id);
+    	LegislatorSummary sum = voteMap.getSummary(id,year);
+    	Legislator detail = voteMap.getDetail(id,year);
     	model.addAttribute("summary",sum);
     	model.addAttribute("id",id);
+    	model.addAttribute("detail",detail);
     	return "detail";
     }
     
@@ -81,11 +85,17 @@ public class HomeController {
      * 
      */
     @RequestMapping(value = "/top")
-    public String topPage(Model model)
+    public String topPageCurrent(Model model)
     {
-    	List<Legislator> success = voteMap.getTopThreeSuccess();
-    	List<Legislator> rep = voteMap.getTopThreeRep();
-    	List<Legislator> dem = voteMap.getTopThreeDem();
+    	return topPage(2015, model);
+    }    
+    @RequestMapping(value = "/top/{year}")
+    public String topPage(@PathVariable Integer year, Model model)
+    {
+    	List<Legislator> success = voteMap.getTopThreeSuccess(year);
+    	List<Legislator> rep = voteMap.getTopThreeRep(year);
+    	List<Legislator> dem = voteMap.getTopThreeDem(year);
+    	model.addAttribute("year",year);
     	model.addAttribute("top",success);
     	model.addAttribute("rep",rep);
     	model.addAttribute("dem",dem);
@@ -97,10 +107,17 @@ public class HomeController {
      * 
      */
     @RequestMapping(value = "/candidates")
-    public String compare(Model model)
+    public String compareCurrent(Model model)
+    {
+    	return compare(2015,model);
+    }
+    @RequestMapping(value = "/candidates/{year}")
+    public String compare(@PathVariable Integer year, Model model)
     {
 		List<String> s = voteMap.getStates();
-		List<Legislator> r = voteMap.getReps("CA");
+		List<Legislator> r = voteMap.getReps("CA",year);
+		List<String> y = voteMap.getYears();
+		model.addAttribute("years", y);
 		model.addAttribute("states", s);   	
     	model.addAttribute("reps",r);
     	return "candidate";
@@ -134,11 +151,11 @@ public class HomeController {
      *  
      * @return JSONized list of com.none.pojo.Legislator objects
      */
-    @RequestMapping("/legislators/{state}")
+    @RequestMapping("/legislators/{year}/{state}")
     @ResponseBody
-    public String legislators(@PathVariable String state)
+    public String legislators(@PathVariable String state, @PathVariable Integer year)
     {
-    	String response = new Gson().toJson(voteMap.getReps(state));
+    	String response = new Gson().toJson(voteMap.getReps(state,year));
     	return response;
     }
     
@@ -150,13 +167,13 @@ public class HomeController {
      * 
      * @return JSONized list of com.none.pojo.Legislator objects
      */
-    @RequestMapping("/similarity/{id}")
+    @RequestMapping("/similarity/{year}/{id}")
     @ResponseBody
-    public String similarity(@PathVariable String id)
+    public String similarity(@PathVariable String id, @PathVariable Integer year)
     {
     	HashMap<String, List<Legislator>> m = new HashMap<>();
-    	m.put("sim", voteMap.getSims(id));
-    	m.put("dis", voteMap.getDims(id));
+    	m.put("sim", voteMap.getSims(id,year));
+    	m.put("dis", voteMap.getDims(id,year));
     	String response = new Gson().toJson(m);
     	return response;
     }
@@ -168,12 +185,12 @@ public class HomeController {
      * 
      * @return JSONized list of com.none.pojo.Legislator objects
      */
-    @RequestMapping("/comparison/{id}")
+    @RequestMapping("/comparison/{year}/{id}")
     @ResponseBody
-    public String candidates(@PathVariable String id)
+    public String candidates(@PathVariable String id, @PathVariable Integer year)
     {
     	HashMap<String, List<Legislator>> m = new HashMap<>();
-    	m.put("sim", voteMap.getCandidates(id));
+    	m.put("sim", voteMap.getCandidates(id,year));
     	String response = new Gson().toJson(m);
     	return response;
     }
@@ -185,11 +202,11 @@ public class HomeController {
      * 
      * @return JSONized representation of a com.none.pojo.Legislator object
      */
-    @RequestMapping("/detail/{id}")
+    @RequestMapping("/detail/{year}/{id}")
     @ResponseBody
-    public String detail(@PathVariable String id)
+    public String detail(@PathVariable String id, @PathVariable Integer year)
     {    	
-    	return new Gson().toJson(voteMap.getDetail(id));
+    	return new Gson().toJson(voteMap.getDetail(id,year));
     }
     
 }

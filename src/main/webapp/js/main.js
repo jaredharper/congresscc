@@ -5,9 +5,10 @@
  */
 function showReps(senateOnly) {
 	var state = $("#state").val();
+	var year = $("#year").val();
 	$("#reps").find('option').remove().end();
 	$('#reps').append($('<option>'));
-	$.getJSON("/legislators/" + state, function(response) {
+	$.getJSON("/legislators/" + year + "/" + state, function(response) {
 		$.each(response, function(key, val) {
 			if(((senateOnly == true) && (val.id.length == 4)) || senateOnly != true) {
 				$('#reps').append($('<option>', {
@@ -69,8 +70,8 @@ function showChart(dem,rep,bi,success) {
 	
 }
 
-function openRepWindow(id) {
-	window.open("/leg?id=" + id);
+function openRepWindow(id,year) {
+	window.open("/leg?id=" + id + "&year=" + year);
 }
 
 /**
@@ -95,8 +96,10 @@ function showNewRepInfo(optionalId, page) {
 	else
 		sourceId = $("#reps").val();
 	
+	var year = $("#year").val();
+	
 	// ajax call to populate the rep's data
-	var detail = "/detail/" + sourceId;
+	var detail = "/detail/" + year + "/" + sourceId;
 	var jqId = '#' + sourceId;
 	$.getJSON(detail, function(response) {
 		
@@ -108,7 +111,7 @@ function showNewRepInfo(optionalId, page) {
 			src: "img/" + sourceId + ".jpg",
 			style: "cursor: pointer; class: center-block",
 			click: function() {
-				window.open("/leg?id=" + sourceId);
+				window.open("/leg?year=" + year + "&id=" + sourceId);
 			}
 		}));					
 
@@ -148,9 +151,9 @@ function showNewRepInfo(optionalId, page) {
 	// populate their info as well
 	var target;
 	if (page == "home")
-		target = "/similarity/" + sourceId;
+		target = "/similarity/" + year + "/" + sourceId;
 	else if (page == "candidate")
-		target = "/comparison/" + sourceId;
+		target = "/comparison/" + year + "/" + sourceId;
 	var counter = 0;
 	$.getJSON(target, function(response) {
 		$.each(response, function(key, v) {
@@ -174,7 +177,7 @@ function showNewRepInfo(optionalId, page) {
 				
 				// Pic is a link to the voter's details page
 				$("#img" + v[i].id).click(function(val) {
-					window.open("/leg?id=" + $(this).parent().attr('id'));
+					window.open("/leg?year=" + year + "&id=" + $(this).parent().attr('id'));
 				});
 				
 				// Chart containing their affiliation
@@ -182,7 +185,7 @@ function showNewRepInfo(optionalId, page) {
 					'class':'list-group center-block',
 					width: '200px'
 				});
-				var a = [v[i].name, v[i].party,v[i].state,v[i].count / 2];
+				var a = [v[i].name, v[i].party,v[i].state,v[i].count];
 				var b = ["name","party","state","votes in common"];
 				$(jqId).append(newElt);
 				for (var j = 0; j < 4; j++) {
