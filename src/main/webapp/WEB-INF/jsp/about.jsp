@@ -110,8 +110,8 @@
 			representative votes.  Not just whether they vote along party lines, but the individual representatives they vote most (and least) like.
 			</p>
 			<p>
-			The site is currently in alpha, with 2015 data loaded and a limited subset of its features pubilcally available.  Check back
-			this week (March 1-4) to see new features and data as they are phased in.  
+			The site is currently in alpha, with 2014-2015 data loaded and a limited subset of its features publically available.  Check back
+			often to see new features and data as they are phased in.  
 			</p>
 			</div>
 

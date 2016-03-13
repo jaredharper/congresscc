@@ -85,8 +85,7 @@ $(document).ready(function() {
 			<h1>con.gress</h1>
 			<p>See who your representatives vote with... and
 				against.  Start by selecting your state and representative.
-				Displayed data is for all of 2015.</p>
-			<p>Click <a href="/candidates">here</a> to compare someone to one of the 2016 candidates (congressional members only)</p>
+			</p>			
 			<div>
 				<select class="dropdown" id="year" onchange="showReps(0)">
 					<c:forEach var="y" items="#{years}">
