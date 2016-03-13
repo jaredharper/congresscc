@@ -84,8 +84,15 @@ $(document).ready(function() {
 		<div class="container">
 			<h1>con.gress</h1>
 			<p>See who your representatives vote with... and
-				against.  Start by selecting your state and representative.
-			</p>			
+				against.  Start by selecting your state and representative.				
+			</p>		
+			<p>
+				<c:choose>
+					<c:when test="${isMobile eq true}">Tap</c:when>
+					<c:when test="${isTable eq true}">Tap</c:when>
+					<c:otherwise>Click</c:otherwise>
+				</c:choose> the portrait to see their details.
+			</p>	
 			<div>
 				<select class="dropdown" id="year" onchange="showReps(0)">
 					<c:forEach var="y" items="#{years}">
