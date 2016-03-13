@@ -89,7 +89,7 @@ $(document).ready(function() {
 			<p>
 				<c:choose>
 					<c:when test="${isMobile eq true}">Tap</c:when>
-					<c:when test="${isTable eq true}">Tap</c:when>
+					<c:when test="${isTablet eq true}">Tap</c:when>
 					<c:otherwise>Click</c:otherwise>
 				</c:choose> the portrait to see their details.
 			</p>	
