@@ -88,9 +88,9 @@ $(document).ready(function() {
     <div class="row">
 	<div class="col-md-12 col-xs-12 jumbotron">
 		<div class="container">
-			<h1>con.gress</h1>
+			<h1>con.gress</h1>			
 			<p>This detail view shows the win/loss ratio and party line voting.  A win is counted as voting "yes" on a bill that passed or "no" on one that didn't</p>
-			<p></p>
+			<p>Representative ${detail.name} from ${detail.state}</p>
 		</div>
 	</div>
 	</div>
@@ -105,7 +105,7 @@ $(document).ready(function() {
 			<div class="col-md-3 col-xs-12 center-block">			
 				<img src="img/${id}.jpg" />	
 			</div>
-
+			
 			<div class="col-md-4 col-s-6 col-xs-12 center-block">
 				<p><b>Win/Loss Ratio:</b><br/></p>
 				<canvas id="sChart" width="300" height="200"></canvas>
