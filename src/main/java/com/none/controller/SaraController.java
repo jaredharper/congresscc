@@ -36,14 +36,14 @@ public class SaraController
     	return new Gson().toJson(voteMap.getYears());
 	}
 	
-	@RequestMapping("/summary/{id}")
+	@RequestMapping("/summary/{year}/{id}")
 	@ResponseBody
 	public String getSummary(@PathVariable String id, @PathVariable Integer year)
 	{
 		return new Gson().toJson(voteMap.getSummary(id,year));
 	}	
 	
-	@RequestMapping("/top3")
+	@RequestMapping("/top3/{year}")
 	@ResponseBody
 	public String getTopThree(@PathVariable Integer year)
 	{
