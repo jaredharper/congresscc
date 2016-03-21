@@ -24,7 +24,8 @@ function showReps(senateOnly) {
  * Show the affiliation/success charts
  * 
  */
-function showChart(dem,rep,bi,success) {	
+function showChart(dem,rep,bi,success,sChart,vChart) {
+	
 	var voteData = [ {
 		value : rep,
 		color : "#FF0000",
@@ -44,7 +45,7 @@ function showChart(dem,rep,bi,success) {
 		highlight : "#F7FE2E",
 		label : "Voted with bipartisan majority"
 	} ];
-	var ctx = $("#vChart").get(0).getContext("2d");
+	var ctx = $("#"+vChart).get(0).getContext("2d");
 	var myDoughnutChart = new Chart(ctx).Doughnut(voteData,{
 	    animation: true,
 	    animationSteps: 60
@@ -62,16 +63,44 @@ function showChart(dem,rep,bi,success) {
 		highlight : "#000000",
 		label : "% Lost"
 	}];
-	var sChart = $("#sChart").get(0).getContext("2d");
-	var myBarChart = new Chart(sChart).Pie(sData, {
+	var stx = $("#"+sChart).get(0).getContext("2d");
+	var myBarChart = new Chart(stx).Pie(sData, {
 		animation: true
 	});
-
-	
 }
 
+/**
+ * Open the detail view in a new window
+ * 
+ */
 function openRepWindow(id,year) {
 	window.open("/leg?id=" + id + "&year=" + year);
+}
+
+function showOpponentInfo() {
+	
+	$("#opponentImg").find('img').remove().end();
+	
+	var id = $("#reps").val()
+	var year = $("#year").val()
+	
+	$("#opponentContainer").show();
+	
+	$("#opponentImg").append($('<img>', {
+		src: "img/" + id + ".jpg",
+		style: "cursor: pointer; class: center-block",
+		click: function() {
+			window.open("/leg?year=" + year + "&id=" + id);
+		}
+	}));
+	
+	var target = "/summary/" + year + "/" + id;
+	$.getJSON(target, function(response) {
+		var s = Math.round((response.success * 1000) / 10);
+		showChart(response.demvotes,response.repvotes,response.bivote,s,"osChart","ovChart");	
+	});
+	
+	
 }
 
 /**

@@ -74,6 +74,11 @@ public class HomeController {
     	}
     	LegislatorSummary sum = voteMap.getSummary(id,year);
     	Legislator detail = voteMap.getDetail(id,year);
+		List<String> s = voteMap.getStates();
+		List<Legislator> r = voteMap.getReps("CA",year);
+		model.addAttribute("states", s);    	
+		model.addAttribute("year", year);
+		model.addAttribute("reps",r);    	
     	model.addAttribute("summary",sum);
     	model.addAttribute("id",id);
     	model.addAttribute("detail",detail);
