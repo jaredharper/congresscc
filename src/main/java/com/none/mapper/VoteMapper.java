@@ -47,19 +47,19 @@ public interface VoteMapper
 	Legislator getDetail(@Param("id") String id, @Param("year") Integer year);
 	
 	// Get a specific legislator's summary info
-	@Select("SELECT success,demvotes,repvotes,bivote FROM cc${year}repsummary WHERE id = #{id} limit 1;")
+	@Select("SELECT success,demvotes,repvotes,bivotes as bivote FROM cc${year}legislator WHERE legislator = #{id};")
 	LegislatorSummary getSummary(@Param("id") String id, @Param("year") Integer year);
 	
 	// Get the n most successful legislators
-	@Select("SELECT id,success as count,displayname as name,party,state FROM cc${year}repsummary,cc${year}legislator WHERE id = legislator ORDER BY success DESC LIMIT 3;")
+	@Select("SELECT legislator as id,success as count,displayname as name,party,state FROM cc${year}legislator ORDER BY success DESC LIMIT 3;")
 	List<Legislator> getTopThreeSuccess(@Param("year") Integer year);
 	
 	// Get the GOP legislators that voted most with the Dems 
-	@Select("SELECT id,demvotes as count,displayname as name,party,state FROM cc${year}repsummary,cc${year}legislator WHERE id = legislator AND party = 'R' ORDER BY demvotes DESC LIMIT 3;")
+	@Select("SELECT legislator as id,demvotes as count,displayname as name,party,state FROM cc${year}legislator WHERE party = 'R' ORDER BY demvotes DESC LIMIT 3;")
 	List<Legislator> getTopThreeRep(@Param("year") Integer year);
 	
 	// Get the Dems that voted most with the GOP
-	@Select("SELECT id,repvotes as count,displayname as name,party,state FROM cc${year}repsummary,cc${year}legislator WHERE id = legislator AND party = 'D' ORDER BY repvotes DESC LIMIT 3;")
+	@Select("SELECT legislator as id,repvotes as count,displayname as name,party,state FROM cc${year}legislator WHERE party = 'D' ORDER BY repvotes DESC LIMIT 3;")
 	List<Legislator> getTopThreeDem(@Param("year") Integer year);
 	
 	// Hit counter for legislators' detailed info
