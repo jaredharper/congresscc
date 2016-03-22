@@ -77,15 +77,20 @@ function openRepWindow(id,year) {
 	window.open("/leg?id=" + id + "&year=" + year);
 }
 
+/**
+ * Display the selected legislator's info underneath
+ * the main row in the detail view
+ * 
+ */
 function showOpponentInfo() {
 	
 	$("#opponentImg").find('img').remove().end();
+	$("#opponentContainer").show();
 	
 	var id = $("#reps").val()
 	var year = $("#year").val()
 	
-	$("#opponentContainer").show();
-	
+	// Show the pic
 	$("#opponentImg").append($('<img>', {
 		src: "img/" + id + ".jpg",
 		style: "cursor: pointer; class: center-block",
@@ -94,8 +99,9 @@ function showOpponentInfo() {
 		}
 	}));
 	
+	// Fetch and display the detail info
 	var target = "/summary/" + year + "/" + id;
-	$.getJSON(target, function(response) {
+	$.getJSON(target, function(response) {		
 		$("#vcTarget").find('canvas').remove().end();
 		$("#vcTarget").append($('<canvas>', {
 			id: 'ovChart',
@@ -105,7 +111,6 @@ function showOpponentInfo() {
 		var s = Math.round((response.success * 1000) / 10);
 		showChart(response.demvotes,response.repvotes,response.bivote,s,"osChart","ovChart");	
 	});
-	
 	
 }
 
