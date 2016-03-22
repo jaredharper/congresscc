@@ -96,6 +96,12 @@ function showOpponentInfo() {
 	
 	var target = "/summary/" + year + "/" + id;
 	$.getJSON(target, function(response) {
+		$("#vcTarget").find('canvas').remove().end();
+		$("#vcTarget").append($('<canvas>', {
+			id: 'ovChart',
+			width: 300,
+			height: 200
+		}))
 		var s = Math.round((response.success * 1000) / 10);
 		showChart(response.demvotes,response.repvotes,response.bivote,s,"osChart","ovChart");	
 	});

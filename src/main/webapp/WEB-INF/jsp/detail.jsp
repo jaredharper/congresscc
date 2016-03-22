@@ -147,7 +147,7 @@ $(document).ready(function() {
 				<!-- <h1><c:out value="${Math.round((summary.success * 1000) / 10)}%" /></h1> -->				
 			</div>
 	
-			<div class="col-md-4 col-s-6 col-xs-12 center-block">			
+			<div class="col-md-4 col-s-6 col-xs-12 center-block" id="vcTarget">			
 				<p><b>Votes by party affiliation:</b></p>
 				<canvas id="ovChart" width="300" height="200"></canvas>
 				<div id="vChartLegend"></div>			
