@@ -102,12 +102,18 @@ function showOpponentInfo() {
 	// Fetch and display the detail info
 	var target = "/summary/" + year + "/" + id;
 	$.getJSON(target, function(response) {		
+		$("#voTarget").find('canvas').remove().end();
+		$("#voTarget").append($('<canvas>', {
+			id: 'osChart',
+			width: 325,
+			height: 200
+		}));
 		$("#vcTarget").find('canvas').remove().end();
 		$("#vcTarget").append($('<canvas>', {
 			id: 'ovChart',
-			width: 300,
+			width: 325,
 			height: 200
-		}))
+		}));
 		var s = Math.round((response.success * 1000) / 10);
 		showChart(response.demvotes,response.repvotes,response.bivote,s,"osChart","ovChart");	
 	});
