@@ -24,8 +24,11 @@
     setTimeout(function() {
       if (image.src != src)
         image.src = src;
-      if (attempts > 5)
+      if (attempts > 5) {
+    	  self.attr("src","img/error.jpg");
+    	  cb.call(self);
     	  return;
+      }
       if (!image.complete)
         return self.loadImage(src,cb,image,attempts+1);
       self.attr('src',src);
