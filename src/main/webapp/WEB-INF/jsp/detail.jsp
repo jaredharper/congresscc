@@ -13,7 +13,6 @@
 
 <script src="js/jquery-2.2.0.min.js"></script>
 <script src="js/Chart.min.js"></script>
-<script src="js/spin.min.js"></script>
 <script src="js/main.js"></script>
 
 <link rel="stylesheet" href="css/main.css">
