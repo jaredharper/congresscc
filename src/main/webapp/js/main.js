@@ -121,6 +121,48 @@ function showOpponentInfo() {
 }
 
 /**
+ * Instantiate the loading gif with options and return
+ * the spinner so it can be stopped by the caller.
+ * 
+ * Spin.js from: https://fgnass.github.io/spin.js/
+ * 
+ * And yes, it is a Stargate reference.  Nerd.
+ * 
+ */
+function makeItSpin(targetId) {
+
+	// Direct from spin.js docs because I don't do frontend well
+	var opts = {
+			  lines: 17				// The number of lines to draw
+			, length: 56			// The length of each line
+			, width: 14				// The line thickness
+			, radius: 42			// The radius of the inner circle
+			, scale: 3.5			// Scales overall size of the spinner
+			, corners: 1			// Corner roundness (0..1)
+			, color: '#6E6E6E'		// #rgb or #rrggbb or array of colors
+			, opacity: 0.4			// Opacity of the lines
+			, rotate: 0				// The rotation offset
+			, direction: 1			// 1: clockwise, -1: counterclockwise
+			, speed: 1.5			// Rounds per second
+			, trail: 60				// Afterglow percentage
+			, fps: 20				// Frames per second when using setTimeout() as a fallback for CSS
+			, zIndex: 2e9			// The z-index (defaults to 2000000000)
+			, className: 'spinner'	// The CSS class to assign to the spinner
+			, top: '50%'			// Top position relative to parent
+			, left: '50%'			// Left position relative to parent
+			, shadow: false			// Whether to render a shadow
+			, hwaccel: false		// Whether to use hardware acceleration
+			, position: 'absolute'	// Element positioning
+	}
+	
+	var target = document.getElementById(targetId)
+	var spinner = new Spinner(opts).spin(target);
+
+	return spinner;
+	
+}
+
+/**
  * Based on the selected criteria, get the chosen representative and display
  * their information, then get their sim/dims from the similarity matrix and
  * display those as well
@@ -131,6 +173,9 @@ function showOpponentInfo() {
  *            optional id to prepopulate home page
  */
 function showNewRepInfo(optionalId, page) {
+	
+	// Start loading gif
+	var spinner = makeItSpin('mainContent');
 	
 	// Clean out the old rep
 	$("#detail").find('div').remove().end();
@@ -245,4 +290,7 @@ function showNewRepInfo(optionalId, page) {
 			}			
 		});
 	});	
+	
+	// Stop loading gif
+	spinner.stop();
 }

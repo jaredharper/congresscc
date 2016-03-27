@@ -13,6 +13,7 @@
 
 <script src="js/jquery-2.2.0.min.js"></script>
 <script src="js/Chart.min.js"></script>
+<script src="js/spin.min.js"></script>
 <script src="js/main.js"></script>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -111,7 +112,7 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
-	</div>
+	<div id="mainContent">
 		<div class="row text-center">
 			<div class="col-md-4 col-xs-12 center-block"></div>
 			<div class="col-md-4 col-xs-12 center-block">
