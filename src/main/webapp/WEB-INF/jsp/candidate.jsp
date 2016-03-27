@@ -84,8 +84,7 @@ $(document).ready(function() {
 	<div class="col-md-12 col-xs-12 jumbotron">
 		<div class="container">
 			<h1>con.gress</h1>
-			<p>Compare your representative to the current crop of Presidential candidates.
-				Displayed data is for all of 2015.</p>
+			<p>Compare your representative to the current crop of Presidential candidates.</p>
 			<p>
 			<div>
 				<select class="dropdown" id="year" onchange="showReps(true)">
