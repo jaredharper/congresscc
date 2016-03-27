@@ -105,7 +105,7 @@
 			<h2>Most successful</h2>
 			<c:forEach var="s" items="${top}">
 				<div class="col-md-4 col-sm-6 col-xs-12 center-block">
-					<img id="img${s.id}" src="img/${s.id}.jpg" style="cursor: pointer" onclick="window.open('/leg/${year}/${s.id}')">
+					<img id="img${s.id}" src="/img/${s.id}.jpg" style="cursor: pointer" onclick="window.open('/leg/${year}/${s.id}')">
 					<ul class="list-group center-block" style="width: 200px;">
 					<li class="list-group-item">name:${s.name}</li>
 					<li class="list-group-item">party:${s.party}</li>
@@ -119,7 +119,7 @@
 			<h2>Most cooperative Republicans</h2>	
 			<c:forEach var="s" items="${rep}">
 				<div class="col-md-4 col-sm-6 col-xs-12 center-block">
-					<img id="img${s.id}" src="img/${s.id}.jpg" style="cursor: pointer" onclick="window.open('/leg/${year}/${s.id}')">
+					<img id="img${s.id}" src="/img/${s.id}.jpg" style="cursor: pointer" onclick="window.open('/leg/${year}/${s.id}')">
 					<ul class="list-group center-block" style="width: 200px;">
 					<li class="list-group-item">name:${s.name}</li>
 					<li class="list-group-item">party:${s.party}</li>
@@ -133,7 +133,7 @@
 			<h2>Most cooperative Democrats</h2>			
 			<c:forEach var="s" items="${dem}">
 				<div class="col-md-4 col-sm-6 col-xs-12 center-block">
-					<img id="img${s.id}" src="img/${s.id}.jpg" style="cursor: pointer" onclick="window.open('/leg/${year}/${s.id}')">
+					<img id="img${s.id}" src="/img/${s.id}.jpg" style="cursor: pointer" onclick="window.open('/leg/${year}/${s.id}')">
 					<ul class="list-group center-block" style="width: 200px;">
 					<li class="list-group-item">name:${s.name}</li>
 					<li class="list-group-item">party:${s.party}</li>
