@@ -11,9 +11,9 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>con.gress</title>
 
-<script src="js/jquery-2.2.0.min.js"></script>
-<script src="js/Chart.min.js"></script>
-<script src="js/main.js"></script>
+<script src="/js/jquery-2.2.0.min.js"></script>
+<script src="/js/Chart.min.js"></script>
+<script src="/js/main.js"></script>
 
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -116,7 +116,7 @@ $(document).ready(function() {
 			<div class="col-md-1 col-xs-12"></div>
 
 			<div class="col-md-3 col-xs-12 center-block">			
-				<img src="img/${id}.jpg" />	
+				<img src="/img/${id}.jpg" />	
 			</div>
 			
 			<div class="col-md-4 col-s-6 col-xs-12 center-block">
@@ -159,13 +159,5 @@ $(document).ready(function() {
 		
 	</div>
 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>

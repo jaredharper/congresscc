@@ -74,7 +74,7 @@ function showChart(dem,rep,bi,success,sChart,vChart) {
  * 
  */
 function openRepWindow(id,year) {
-	window.open("/leg?id=" + id + "&year=" + year);
+	window.open("/leg/" + year + "/" + id);
 }
 
 /**
@@ -92,10 +92,10 @@ function showOpponentInfo() {
 	
 	// Show the pic
 	$("#opponentImg").append($('<img>', {
-		src: "img/" + id + ".jpg",
+		src: "/img/" + id + ".jpg",
 		style: "cursor: pointer; class: center-block",
 		click: function() {
-			window.open("/leg?year=" + year + "&id=" + id);
+			window.open("/leg/" + year + "/" + id);
 		}
 	}));
 	
@@ -157,7 +157,7 @@ function showNewRepInfo(optionalId, page) {
 			src: "img/" + sourceId + ".jpg",
 			style: "cursor: pointer; class: center-block",
 			click: function() {
-				window.open("/leg?year=" + year + "&id=" + sourceId);
+				window.open("/leg/" + year + "/" + sourceId);
 			}
 		}));					
 
@@ -228,7 +228,7 @@ function showNewRepInfo(optionalId, page) {
 				
 				// Pic is a link to the voter's details page
 				$("#img" + v[i].id).click(function(val) {
-					window.open("/leg?year=" + year + "&id=" + $(this).parent().attr('id'));
+					window.open("/leg/" + year + "/" + $(this).parent().attr('id'));
 				});
 				
 				// Chart containing their affiliation

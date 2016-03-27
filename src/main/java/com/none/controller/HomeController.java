@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -61,8 +62,8 @@ public class HomeController {
      * 
      * @param id - GET/POST variable containing the legislator's id
      */
-    @RequestMapping(value = "/leg")
-    public String detailPage(@RequestParam String id, @RequestParam Integer year, Model model)
+    @RequestMapping(value = "/leg/{year}/{id}", method = RequestMethod.GET)
+    public String detailPage(@PathVariable String id, @PathVariable Integer year, Model model)
     {
     	try
     	{
