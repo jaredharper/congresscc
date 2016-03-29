@@ -102,6 +102,8 @@ public class HomeController {
     	List<Legislator> success = voteMap.getTopThreeSuccess(year);
     	List<Legislator> rep = voteMap.getTopThreeRep(year);
     	List<Legislator> dem = voteMap.getTopThreeDem(year);
+		List<String> y = voteMap.getYears();
+		model.addAttribute("years",y);
     	model.addAttribute("year",year);
     	model.addAttribute("top",success);
     	model.addAttribute("rep",rep);

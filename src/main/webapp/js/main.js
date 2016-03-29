@@ -21,6 +21,14 @@ function showReps(senateOnly) {
 }
 
 /**
+ * Go to the "top 3" page for the selected year
+ */
+function topYear() {
+	var year = "/top/" + $("#years").val();
+	window.location.assign(year);
+}
+
+/**
  * Show the affiliation/success charts
  * 
  */

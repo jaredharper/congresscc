@@ -11,9 +11,9 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>con.gress</title>
 
-<script src="js/jquery-2.2.0.min.js"></script>
-<script src="js/Chart.min.js"></script>
-<script src="js/main.js"></script>
+<script src="/js/jquery-2.2.0.min.js"></script>
+<script src="/js/Chart.min.js"></script>
+<script src="/js/main.js"></script>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
@@ -78,6 +78,15 @@
 		<div class="container">
 			<h1>con.gress</h1>
 			<p>The top three legislators based on success (most "yes" votes passing or "no" votes failing) and cooperation.</p>
+			<div>
+			<p>Select another year:
+			<select class="dropdown" id="years" onchange="topYear()">
+				<c:forEach var="y" items="#{years}">
+					<option>${y}</option>
+				</c:forEach>
+			</select>					
+			</p>
+			</div>
 		</div>
 	</div>
 	</div>
