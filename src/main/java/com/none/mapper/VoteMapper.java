@@ -33,11 +33,17 @@ public interface VoteMapper
 	// Get a list of Legislators that voted most like this one (id)
 	@Select("SELECT second as id, count, displayname as name, party, state from cc${year}similarity join cc${year}legislator on second = legislator where first = #{id} order by count desc limit 6")
 	List<Legislator> getSims(@Param("id") String id, @Param("year") Integer year);
+
+	@Select("SELECT first as id, count, displayname as name, party, state from cc${year}similarity join cc${year}legislator on first = legislator where second = #{id} order by count desc limit 6")
+	List<Legislator> getSimsReverse(@Param("id") String id, @Param("year") Integer year);
 	
 	// Get a list of Legislators that voted least like this one (id)
 	@Select("SELECT second as id, count, displayname as name, party, state from cc${year}similarity join cc${year}legislator on second = legislator where first = #{id} order by count asc limit 6")
 	List<Legislator> getDims(@Param("id") String id, @Param("year") Integer year);
-	
+
+	@Select("SELECT first as id, count, displayname as name, party, state from cc${year}similarity join cc${year}legislator on first = legislator where second = #{id} order by count asc limit 6")
+	List<Legislator> getDimsReverse(@Param("id") String id, @Param("year") Integer year);
+
 	// Get the 2016 Presidential candidates and compare them to this one (id)
 	@Select("SELECT second as id, count, displayname as name, party, state from cc${year}similarity join cc${year}legislator on second = legislator where first = #{id} and (legislator = 'S350' or legislator = 'S355' or legislator = 'S348' or legislator = 'S366'or legislator = 'S313') order by count asc limit 6;")
 	List<Legislator> getCandidates(@Param("id") String id, @Param("year") Integer year);

@@ -1,5 +1,6 @@
 package com.none.controller;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -178,8 +179,27 @@ public class HomeController {
     public String similarity(@PathVariable String id, @PathVariable Integer year)
     {
     	HashMap<String, List<Legislator>> m = new HashMap<>();
-    	m.put("sim", voteMap.getSims(id,year));
-    	m.put("dis", voteMap.getDims(id,year));
+    	
+    	// The table where this data is stored contains pairs and their count.
+    	// i.e. Bob,Tom,123.  We want both Bob and Tom
+    	List<Legislator> simsA = voteMap.getSims(id, year);
+    	List<Legislator> simsB = voteMap.getSimsReverse(id, year);
+    	simsA.addAll(simsB);
+    	Collections.sort(simsA);
+    	Collections.reverse(simsA);
+    	if (simsA.size() > 5)
+    		simsA = simsA.subList(0, 6);
+    	
+    	List<Legislator> dimsA = voteMap.getDims(id, year);
+    	List<Legislator> dimsB = voteMap.getDimsReverse(id, year);
+    	dimsA.addAll(dimsB);
+    	Collections.sort(dimsA);
+    	if (dimsA.size() > 5)
+    		dimsA = dimsA.subList(0, 6);
+    	
+    	
+    	m.put("sim", simsA);
+    	m.put("dis", dimsA);
     	String response = new Gson().toJson(m);
     	return response;
     }

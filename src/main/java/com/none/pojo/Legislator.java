@@ -8,7 +8,7 @@ package com.none.pojo;
  * @author jthomas
  *
  */
-public class Legislator
+public class Legislator implements Comparable<Legislator>
 {
 	private String id,name,count,party,state;
 
@@ -60,6 +60,20 @@ public class Legislator
 	public void setName(String name)
 	{
 		this.name = name;
+	}
+
+	@Override
+	public int compareTo(Legislator o)
+	{
+		int left = Integer.parseInt(this.count);
+		int right = Integer.parseInt(o.getCount());
+		
+		if (left > right)
+			return 1;
+		else if (left < right)
+			return -1;
+		else
+			return 0;
 	}
 	
 }
