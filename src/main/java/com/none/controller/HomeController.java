@@ -22,9 +22,7 @@ import com.none.pojo.Legislator;
 import com.none.pojo.LegislatorSummary;
 
 /**
- * This class maps relative URLs to their
- * corresponding backend components and/or their
- * matching views (JSPs)
+ * This class maps URLs to their backend components & views
  * 
  * @author jthomas
  *
@@ -44,7 +42,7 @@ public class HomeController {
 	 * @return - String name of view to display
 	 */
     @RequestMapping("/")
-    public String home2(Model model, Device device)
+    public String homePage(Model model, Device device)
     {
 		List<String> s = voteMap.getStates();
 		List<String> y = voteMap.getYears();
@@ -88,14 +86,21 @@ public class HomeController {
     }
     
     /**
-     * Mapping and data preload for the "top 3" view
+     * Mapping and data preload for the "top 3" views
+     * 
+     * If no year is provided, use 2015 as a default
      * 
      */
     @RequestMapping(value = "/top")
     public String topPageCurrent(Model model)
     {
     	return topPage(2015, model);
-    }    
+    }
+    
+    /**
+     * Mapping and data preload for the "top 3" views
+     * 
+     */
     @RequestMapping(value = "/top/{year}")
     public String topPage(@PathVariable Integer year, Model model)
     {
@@ -112,7 +117,9 @@ public class HomeController {
     }
     
     /**
-     * Mapping and data preload for the 2016 Presidental candidate comparison view 
+     * Mapping and data preload for the 2016 Presidental candidate comparison view
+     * 
+     *  If no year is provided, use 2015 as a default
      * 
      */
     @RequestMapping(value = "/candidates")
@@ -120,6 +127,11 @@ public class HomeController {
     {
     	return compare(2015,model);
     }
+
+    /**
+     * Mapping and data preload for the 2016 Presidental candidate comparison view 
+     * 
+     */
     @RequestMapping(value = "/candidates/{year}")
     public String compare(@PathVariable Integer year, Model model)
     {
@@ -151,90 +163,5 @@ public class HomeController {
     {
     	return "contact";
     }
-    
-    /**
-     * Mapping for the service endpoint that provides a list
-     * of legislators by state
-     * 
-     * @param state - only show reps from this state
-     *  
-     * @return JSONized list of com.none.pojo.Legislator objects
-     */
-    @RequestMapping("/legislators/{year}/{state}")
-    @ResponseBody
-    public String legislators(@PathVariable String state, @PathVariable Integer year)
-    {
-    	String response = new Gson().toJson(voteMap.getReps(state,year));
-    	return response;
-    }
-    
-    /**
-     * Service endpoint that gets legislators most and least like the 
-     * identified legislator
-     * 
-     * @param id - id of legislator to be compared
-     * 
-     * @return JSONized list of com.none.pojo.Legislator objects
-     */
-    @RequestMapping("/similarity/{year}/{id}")
-    @ResponseBody
-    public String similarity(@PathVariable String id, @PathVariable Integer year)
-    {
-    	HashMap<String, List<Legislator>> m = new HashMap<>();
-    	
-    	// The table where this data is stored contains pairs and their count.
-    	// i.e. Bob,Tom,123.  We want both Bob and Tom
-    	List<Legislator> simsA = voteMap.getSims(id, year);
-    	List<Legislator> simsB = voteMap.getSimsReverse(id, year);
-    	simsA.addAll(simsB);
-    	Collections.sort(simsA);
-    	Collections.reverse(simsA);
-    	if (simsA.size() > 5)
-    		simsA = simsA.subList(0, 6);
-    	
-    	List<Legislator> dimsA = voteMap.getDims(id, year);
-    	List<Legislator> dimsB = voteMap.getDimsReverse(id, year);
-    	dimsA.addAll(dimsB);
-    	Collections.sort(dimsA);
-    	if (dimsA.size() > 5)
-    		dimsA = dimsA.subList(0, 6);
-    	
-    	
-    	m.put("sim", simsA);
-    	m.put("dis", dimsA);
-    	String response = new Gson().toJson(m);
-    	return response;
-    }
-    
-    /**
-     * Service endpoint for the "presidential candidates of 2016" comparison
-     * 
-     * @param id - id of legislator to be compared
-     * 
-     * @return JSONized list of com.none.pojo.Legislator objects
-     */
-    @RequestMapping("/comparison/{year}/{id}")
-    @ResponseBody
-    public String candidates(@PathVariable String id, @PathVariable Integer year)
-    {
-    	HashMap<String, List<Legislator>> m = new HashMap<>();
-    	m.put("sim", voteMap.getCandidates(id,year));
-    	String response = new Gson().toJson(m);
-    	return response;
-    }
-    
-    /**
-     * Service endpoint for getting a single legislator's detailed information
-     * 
-     * @param id - id of legislator
-     * 
-     * @return JSONized representation of a com.none.pojo.Legislator object
-     */
-    @RequestMapping("/detail/{year}/{id}")
-    @ResponseBody
-    public String detail(@PathVariable String id, @PathVariable Integer year)
-    {    	
-    	return new Gson().toJson(voteMap.getDetail(id,year));
-    }
-    
+        
 }

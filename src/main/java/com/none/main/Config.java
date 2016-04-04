@@ -1,4 +1,4 @@
-package com.none.controller;
+package com.none.main;
 
 import java.net.URI;
 import java.sql.Driver;
@@ -32,8 +32,7 @@ public class Config extends WebMvcConfigurerAdapter
 {
 
 	/**
-	 * Will map to the views in: "WEB-INF/views/accounts/*.jsp"
-	 * 
+	 * Map all views in the view directory
 	 */
 	@Bean
 	public ViewResolver getJspViewResolver()
@@ -45,9 +44,14 @@ public class Config extends WebMvcConfigurerAdapter
 	}
 
 	/**
-	 * Configures the data source (in this case, our postgres db)
+	 * Configures the data source.  
 	 * 
-	 * @return
+	 * In order for the Spring automagic to work and connect to the database 
+	 * an environment variable named HEROKU_POSTGRESQL_CONGRESS must exist with
+	 * a correctly formatted postgres connection URL.  It should look like this:
+	 * 
+	 * postgres://username:password@localhost:5432/databasename
+	 * 
 	 */
 	@Bean
 	public DataSource getDataSource()
@@ -55,25 +59,21 @@ public class Config extends WebMvcConfigurerAdapter
 		try
 		{
 			
-			// This returns null
-			String prop = System.getenv("HEROKU_POSTGRESQL_CONGRESS");
-			
-			// This doesn't
+			// Get connection info from environment
 			Map<String,String> p = System.getenv();
-			prop = p.get("HEROKU_POSTGRESQL_CONGRESS");
-			
-			// I am confused.
+			String prop = p.get("HEROKU_POSTGRESQL_CONGRESS");
 	        URI dbUri = new URI(prop);
 
+	        // Reformat the URL because the JDBC driver wants "postgresql" instead of "postgres"
 	        String username = dbUri.getUserInfo().split(":")[0];
 	        String password = dbUri.getUserInfo().split(":")[1];
 	        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
+	        // This is not WebScale(tm).  Should probably change this to a PooledDataSource. 
 	        BasicDataSource basicDataSource = new BasicDataSource();
 	        basicDataSource.setUrl(dbUrl);
 	        basicDataSource.setUsername(username);
 	        basicDataSource.setPassword(password);
-			
 			return basicDataSource;
 
 		} catch (Exception ex)
@@ -84,9 +84,9 @@ public class Config extends WebMvcConfigurerAdapter
 	}
 
 	/**
-	 * Configures the object that mapper use to access our data source
+	 * Spring Boot needs this as part of setting up the database.  By convention
+	 * it needs both a DataSource and a SqlSessionFactory.
 	 * 
-	 * @return
 	 */
 	@Bean
 	public SqlSessionFactory getSqlSessionFactory()
@@ -105,7 +105,7 @@ public class Config extends WebMvcConfigurerAdapter
 
 	/**
 	 * Basic servlet mapping config
-	 * 
+	 *  
 	 */
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer)
