@@ -44,11 +44,11 @@ public class Config extends WebMvcConfigurerAdapter
 	}
 
 	/**
-	 * Configures the data source.  
+	 * Configures the data source.
 	 * 
-	 * In order for the Spring automagic to work and connect to the database 
-	 * an environment variable named HEROKU_POSTGRESQL_CONGRESS must exist with
-	 * a correctly formatted postgres connection URL.  It should look like this:
+	 * In order for the Spring automagic to work and connect to the database an
+	 * environment variable named HEROKU_POSTGRESQL_CONGRESS must exist with a
+	 * correctly formatted postgres connection URL. It should look like this:
 	 * 
 	 * postgres://username:password@localhost:5432/databasename
 	 * 
@@ -58,25 +58,27 @@ public class Config extends WebMvcConfigurerAdapter
 	{
 		try
 		{
-			
+
 			// Get connection info from environment
-			Map<String,String> p = System.getenv();
+			Map<String, String> p = System.getenv();
 			String prop = p.get("HEROKU_POSTGRESQL_CONGRESS");
-	        URI dbUri = new URI(prop);
+			URI dbUri = new URI(prop);
 
-	        // Reformat the URL because the JDBC driver wants "postgresql" instead of "postgres"
-	        String username = dbUri.getUserInfo().split(":")[0];
-	        String password = dbUri.getUserInfo().split(":")[1];
-	        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+			// Reformat the URL because the JDBC driver wants "postgresql"
+			// instead of "postgres"
+			String username = dbUri.getUserInfo().split(":")[0];
+			String password = dbUri.getUserInfo().split(":")[1];
+			String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
-	        // This is not WebScale(tm).  Should probably change this to a PooledDataSource. 
-	        BasicDataSource basicDataSource = new BasicDataSource();
-	        basicDataSource.setUrl(dbUrl);
-	        basicDataSource.setUsername(username);
-	        basicDataSource.setPassword(password);
+			// This is not WebScale(tm). Should probably change this to a PooledDataSource.
+			BasicDataSource basicDataSource = new BasicDataSource();
+			basicDataSource.setUrl(dbUrl);
+			basicDataSource.setUsername(username);
+			basicDataSource.setPassword(password);
 			return basicDataSource;
 
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			Logger.getAnonymousLogger().log(Level.SEVERE, ex.getMessage());
 			return null;
@@ -84,7 +86,7 @@ public class Config extends WebMvcConfigurerAdapter
 	}
 
 	/**
-	 * Spring Boot needs this as part of setting up the database.  By convention
+	 * Spring Boot needs this as part of setting up the database. By convention
 	 * it needs both a DataSource and a SqlSessionFactory.
 	 * 
 	 */
@@ -96,7 +98,8 @@ public class Config extends WebMvcConfigurerAdapter
 			SqlSessionFactoryBean b = new SqlSessionFactoryBean();
 			b.setDataSource(getDataSource());
 			return b.getObject();
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			Logger.getAnonymousLogger().log(Level.SEVERE, ex.getMessage());
 			return null;
@@ -105,7 +108,7 @@ public class Config extends WebMvcConfigurerAdapter
 
 	/**
 	 * Basic servlet mapping config
-	 *  
+	 * 
 	 */
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer)
