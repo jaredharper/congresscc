@@ -15,8 +15,10 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 @EnableAutoConfiguration
 @SpringBootApplication
 @ComponentScan("com.none")
-public class Main {
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(Main.class, args);
-    }	
+public class Main
+{
+	public static void main(String[] args) throws Exception
+	{
+		SpringApplication.run(Main.class, args);
+	}
 }
