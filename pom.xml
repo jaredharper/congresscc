@@ -33,7 +33,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>com.none.controller.Main</mainClass>
+							<mainClass>com.none.main.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
