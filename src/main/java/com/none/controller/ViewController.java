@@ -28,7 +28,7 @@ import com.none.pojo.LegislatorSummary;
  *
  */
 @Controller
-public class HomeController {
+public class ViewController {
 	
 	@Autowired
 	VoteMapper voteMap;

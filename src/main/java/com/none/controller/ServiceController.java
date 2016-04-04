@@ -23,7 +23,7 @@ import com.none.pojo.LegislatorSummary;
  *
  */
 @Controller
-public class SaraController
+public class ServiceController
 {	
 	
 	@Autowired
@@ -62,7 +62,7 @@ public class SaraController
     	
     	// The table where this data is stored contains pairs and their count.
     	// i.e. Bob,Tom,123.  We want Bob regardless of which column he's in.
-    	// TODO: refactor
+    	// TODO: refactor sql queries so this is one list
     	List<Legislator> simsA = voteMap.getSims(id, year);
     	List<Legislator> simsB = voteMap.getSimsReverse(id, year);
     	simsA.addAll(simsB);
