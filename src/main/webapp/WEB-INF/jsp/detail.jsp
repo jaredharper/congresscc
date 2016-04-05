@@ -59,7 +59,9 @@
 				</select>
 			</div>
 			</p>
-			<p>Or you can click <a href="/dev/${year}/${id}">here</a> to see the specific bills where ${detail.name} voted against the party line.</p>
+			<c:if test="${year gt 2013 }">
+			<p>Or you can click <a href="/dev/${year}/${id}">here</a> to see the specific bills where ${detail.name} voted against the party line. (2014-2015 only.)</p>
+			</c:if>
 		</div>
 	</div>
 	</div>
