@@ -99,13 +99,7 @@ function showOpponentInfo() {
 	var year = $("#year").val()
 	
 	// Show the pic
-	$("#opponentImg").append($('<img>', {
-		src: "/img/" + id + ".jpg",
-		style: "cursor: pointer; class: center-block",
-		click: function() {
-			window.open("/leg/" + year + "/" + id);
-		}
-	}));
+	asyncImageLoader(id, "#opponentImg", year);
 	
 	// Fetch and display the detail info
 	var target = "/summary/" + year + "/" + id;
