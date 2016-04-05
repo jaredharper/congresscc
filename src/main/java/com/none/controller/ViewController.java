@@ -1,5 +1,7 @@
 package com.none.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,6 +77,7 @@ public class ViewController
 		List<Legislator> r = voteMap.getReps("CA", year);
 		model.addAttribute("states", s);
 		model.addAttribute("year", year);
+		model.addAttribute("id", id);
 		model.addAttribute("reps", r);
 		model.addAttribute("summary", sum);
 		model.addAttribute("id", id);
@@ -142,6 +145,37 @@ public class ViewController
 		model.addAttribute("reps", r);
 		return "candidate";
 	}
+	
+	/**
+	 * Mapping and data preload for the "voted against party majority" view
+	 * 
+	 */
+	@RequestMapping(value = "/dev/{year}/{id}")
+	public String deviation(@PathVariable String id, @PathVariable Integer year, Model model)
+	{
+		Legislator detail = voteMap.getDetail(id, year);		
+		List<String> bills = null;
+		HashMap<String,String> urls = new HashMap<>();
+		
+		// TODO: more robust solution for the 2 independent representatives present at any given time
+		String s = detail.getParty();
+		if (s.equals("D") || s.equals("I"))
+			bills = voteMap.getDemDeviation(id, year);
+		else if (s.equals("R"))
+			bills = voteMap.getRepDeviation(id, year);
+
+		for (String bill : bills)
+		{
+			String[] parts = bill.split("-");
+			String url = "https://www.govtrack.us/congress/votes/" + parts[1].replace('.', '-') + "/" + parts[0];
+			urls.put(bill,url);
+		}
+		
+		model.addAttribute("detail",detail);
+		model.addAttribute("urls", urls);
+		return "deviation";
+	}
+	
 
 	/**
 	 * Mapping for the "about this site" view

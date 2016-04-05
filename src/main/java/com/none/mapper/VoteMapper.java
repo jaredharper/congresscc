@@ -67,6 +67,14 @@ public interface VoteMapper
 	// Get the Dems that voted most with the GOP
 	@Select("SELECT legislator as id,repvotes as count,displayname as name,party,state FROM cc${year}legislator WHERE party = 'D' ORDER BY repvotes DESC LIMIT 3;")
 	List<Legislator> getTopThreeDem(@Param("year") Integer year);
+
+	// Get the bills the specified Democrat broke ranks on
+	@Select("select id from v${year} join cc${year}total on legislation = id where legislator = #{id} and (((vote = 'y') and (ry > rn) and (dy < dn)) or ((vote = 'n') and (rn > ry) and (dn < dy))) order by id limit 100;")
+	List<String> getDemDeviation(@Param("id") String id, @Param("year") Integer year);
+	
+	// Get the bills the specified Republican broke ranks on
+	@Select("select  * from v${year} join cc${year}total on legislation = id where legislator = #{id} and (((vote = 'y') and (ry < rn) and (dy > dn)) or ((vote = 'n') and (rn < ry) and (dn > dy))) order by id limit 100;")
+	List<String> getRepDeviation(@Param("id") String id, @Param("year") Integer year);
 	
 	// Hit counter for legislators' detailed info
 	@Update("UPDATE cc2015count SET count = count + 1 WHERE id = #{id}")

@@ -67,6 +67,9 @@
 			<p>
 			The site is currently in alpha, with 1991-2015 data loaded and a limited subset of its features available.
 			</p>
+			<p>
+			Raw data comes from <a href="https://www.govtrack.us/">Govtrack.us</a>
+			</p>
 			</div>
 
 		</div>

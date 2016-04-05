@@ -46,7 +46,7 @@
 		<div class="container">
 			<h1>con.gress</h1>			
 			<p>This detail view shows the win/loss ratio and party line voting.  A win is counted as voting "yes" on a bill that passed or "no" on one that didn't</p>
-			<p>You can also compare Representative ${detail.name} (${detail.party}) from ${detail.state} to another member of Congress below:</p>
+			<p>You can compare Representative ${detail.name} (${detail.party}) from ${detail.state} to another member of Congress using the dropdown below:</p>
 			<p>
 			<div>
 				<select class="dropdown" id="state" onchange="showReps(0)">
@@ -59,6 +59,7 @@
 				</select>
 			</div>
 			</p>
+			<p>Or you can click <a href="/dev/${year}/${id}">here</a> to see the specific bills where ${detail.name} voted against the party line.</p>
 		</div>
 	</div>
 	</div>
