@@ -1,7 +1,9 @@
 <%@include file="head.jsp" %>
 <body>
+	<script src="/js/image.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
+		asyncImageLoader("${id}","#mainImageContainer");
 		var s = Math.round((${summary.success} * 1000) / 10);
 		showChart(${summary.demvotes},${summary.repvotes},${summary.bivote},s,"sChart","vChart");
 	});
@@ -73,8 +75,8 @@
 
 			<div class="col-md-1 col-xs-12"></div>
 
-			<div class="col-md-3 col-xs-12 center-block">			
-				<img src="/img/${id}.jpg" />	
+			<div class="col-md-3 col-xs-12 center-block" id="mainImageContainer">			
+				
 			</div>
 			
 			<div class="col-md-4 col-s-6 col-xs-12 center-block">

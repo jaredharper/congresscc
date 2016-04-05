@@ -129,6 +129,34 @@ function showOpponentInfo() {
 }
 
 /**
+ * Wrapper for the loading gif / portrait logic
+ * 
+ * @param sourceId - representative's ID
+ * @param jqId - the object this will be appended to
+ * @param year - the year used for linking to detail view
+ */
+function asyncImageLoader(sourceId,jqId,year) {
+	
+	var ni = $('<img>', {
+		id: "img" + sourceId,
+		src: "/img/loader.gif",
+		style: "cursor: pointer"
+	});
+	
+	// Loading indicator for image
+	$(ni).attr("data-src","/img/" + sourceId + ".jpg");
+	$(ni).loadImage();
+	$(jqId).append(ni);
+	
+	// Pic is a link to the voter's details page
+	if (year) {
+		$("#img" + sourceId).click(function(val) {
+			window.open("/leg/" + year + "/" + sourceId);
+		});		
+	}	
+}
+
+/**
  * Based on the selected criteria, get the chosen representative and display
  * their information, then get their sim/dims from the similarity matrix and
  * display those as well
@@ -161,13 +189,7 @@ function showNewRepInfo(optionalId, page) {
 		$("#detail").append($('<div>',{
 		    id: sourceId					    
 		}));		
-		$(jqId).append($('<img>', {
-			src: "img/" + sourceId + ".jpg",
-			style: "cursor: pointer; class: center-block",
-			click: function() {
-				window.open("/leg/" + year + "/" + sourceId);
-			}
-		}));					
+		asyncImageLoader(sourceId, jqId, year);
 
 		// The chart containing their affiliation
 		var newElt = $('<ul/>',{
@@ -223,21 +245,7 @@ function showNewRepInfo(optionalId, page) {
 				    id: v[i].id,
 				    'class' : 'col-md-4 col-sm-6 col-xs-12'
 				}));				
-				var ni = $('<img>', {
-					id: "img" + v[i].id,
-					src: "img/loader.gif",
-					style: "cursor: pointer"
-				});
-				
-				// Loading indicator for image
-				$(ni).attr("data-src","img/" + v[i].id + ".jpg");
-				$(ni).loadImage();
-				$(jqId).append(ni);
-				
-				// Pic is a link to the voter's details page
-				$("#img" + v[i].id).click(function(val) {
-					window.open("/leg/" + year + "/" + $(this).parent().attr('id'));
-				});
+				asyncImageLoader(v[i].id, jqId, year);
 				
 				// Chart containing their affiliation
 				var newElt = $('<ul/>',{

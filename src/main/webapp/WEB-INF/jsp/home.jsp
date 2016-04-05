@@ -1,6 +1,6 @@
 <%@include file="head.jsp" %>
 <body>
-	<script src="js/image.js"></script>
+	<script src="/js/image.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
 		showNewRepInfo("A000371","home");
