@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.none.pojo.DebateResponse;
 import com.none.pojo.Legislator;
 import com.none.pojo.LegislatorSummary;
 
@@ -75,6 +76,9 @@ public interface VoteMapper
 	// Get the bills the specified Republican broke ranks on
 	@Select("select  * from v${year} join cc${year}total on legislation = id where legislator = #{id} and (((vote = 'y') and (ry < rn) and (dy > dn)) or ((vote = 'n') and (rn < ry) and (dn > dy))) order by id limit 100;")
 	List<String> getRepDeviation(@Param("id") String id, @Param("year") Integer year);
+	
+	@Select("select id,response,speaker,anger,fear,joy,sadness,disgust from debate where id >= #begin and id <= #end")
+	List<DebateResponse> getResponse(@Param("begin") Integer begin, @Param("end") Integer end);
 	
 	// Hit counter for legislators' detailed info
 	@Update("UPDATE cc2015count SET count = count + 1 WHERE id = #{id}")
