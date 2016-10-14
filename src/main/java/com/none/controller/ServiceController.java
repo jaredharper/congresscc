@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.none.mapper.VoteMapper;
+import com.none.pojo.DebateResponse;
 import com.none.pojo.Legislator;
 
 /**
@@ -163,6 +164,15 @@ public class ServiceController
 		tops.put("topDEM", voteMap.getTopThreeDem(year));
 		return new Gson().toJson(tops);
 
+	}
+	
+	@RequestMapping("/debate/{page}")
+	@ResponseBody
+	public String getDebatePage(@PathVariable Integer page)
+	{
+		int id = page * 1000;
+		List<DebateResponse> responses = voteMap.getResponse(id, id+10);
+		return new Gson().toJson(responses);
 	}
 
 }

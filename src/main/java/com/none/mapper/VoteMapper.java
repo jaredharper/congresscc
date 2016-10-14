@@ -77,7 +77,7 @@ public interface VoteMapper
 	@Select("select  * from v${year} join cc${year}total on legislation = id where legislator = #{id} and (((vote = 'y') and (ry < rn) and (dy > dn)) or ((vote = 'n') and (rn < ry) and (dn > dy))) order by id limit 100;")
 	List<String> getRepDeviation(@Param("id") String id, @Param("year") Integer year);
 	
-	@Select("select id,response,speaker,anger,fear,joy,sadness,disgust from debate where id >= #begin and id <= #end")
+	@Select("select id,response,speaker,anger,fear,joy,sadness,disgust from debate where id >= #begin and id <= #end order by id")
 	List<DebateResponse> getResponse(@Param("begin") Integer begin, @Param("end") Integer end);
 	
 	// Hit counter for legislators' detailed info
