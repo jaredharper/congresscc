@@ -27,7 +27,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  *
  */
 @Configuration
-@MapperScan("com.none.mapper")
 public class Config extends WebMvcConfigurerAdapter
 {
 

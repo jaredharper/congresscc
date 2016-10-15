@@ -170,8 +170,9 @@ public class ServiceController
 	@ResponseBody
 	public String getDebatePage(@PathVariable Integer page)
 	{
-		int id = page * 1000;
-		List<DebateResponse> responses = voteMap.getResponse(id, id+10);
+		int base = 1000;
+		int id = page * 10 + base;
+		List<DebateResponse> responses = voteMap.getResponse(id, id+9);
 		return new Gson().toJson(responses);
 	}
 
