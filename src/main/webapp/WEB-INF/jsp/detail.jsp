@@ -80,7 +80,7 @@
 			</div>
 			
 			<div class="col-md-4 col-s-6 col-xs-12 center-block">
-				<p><b>Win/Loss Ratio:</b><br/></p>
+				<p><b><span style="cursor:help;" title="Voted with simple majority">Win</span>/Loss Ratio:</b><br/></p>
 				<canvas id="sChart" width="300" height="200"></canvas>
 				<!-- <h1><c:out value="${Math.round((summary.success * 1000) / 10)}%" /></h1> -->				
 			</div>
