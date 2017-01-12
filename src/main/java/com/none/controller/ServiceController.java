@@ -175,5 +175,12 @@ public class ServiceController
 		List<DebateResponse> responses = voteMap.getResponse(id, id+9);
 		return new Gson().toJson(responses);
 	}
+	
+	@RequestMapping("/herokutest")
+	@ResponseBody
+	public String herokuTest()
+	{
+		return "herokutest";
+	}
 
 }
