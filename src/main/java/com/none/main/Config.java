@@ -2,6 +2,7 @@ package com.none.main;
 
 import java.net.URI;
 import java.sql.Driver;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,8 +16,13 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.springframework.mobile.device.DeviceHandlerMethodArgumentResolver;
+import org.springframework.mobile.device.DeviceResolverHandlerInterceptor;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -27,7 +33,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  *
  */
 @Configuration
-public class Config extends WebMvcConfigurerAdapter
+public class Config implements WebMvcConfigurer
 {
 
 	/**
@@ -41,77 +47,31 @@ public class Config extends WebMvcConfigurerAdapter
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
-
-	/**
-	 * Configures the data source.
-	 * 
-	 * In order for the Spring automagic to work and connect to the database an
-	 * environment variable named HEROKU_POSTGRESQL_CONGRESS must exist with a
-	 * correctly formatted postgres connection URL. It should look like this:
-	 * 
-	 * postgres://username:password@localhost:5432/databasename
-	 * 
+	
+	/*
+	 * This adds spring mobile support, which was removed from spring boot 2
+	 * https://stackoverflow.com/questions/49242547/spring-boot-2-nosuchmethodexception-org-springframework-mobile-device-device-i
+	 * Thanks, Unknown poster.
 	 */
 	@Bean
-	public DataSource getDataSource()
-	{
-		try
-		{
-
-			// Get connection info from environment
-			Map<String, String> p = System.getenv();
-			String prop = p.get("HEROKU_POSTGRESQL_CONGRESS");
-			URI dbUri = new URI(prop);
-
-			// Reformat the URL because the JDBC driver wants "postgresql"
-			// instead of "postgres"
-			String username = dbUri.getUserInfo().split(":")[0];
-			String password = dbUri.getUserInfo().split(":")[1];
-			String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
-
-			// This is not WebScale(tm). Should probably change this to a PooledDataSource.
-			BasicDataSource basicDataSource = new BasicDataSource();
-			basicDataSource.setUrl(dbUrl);
-			basicDataSource.setUsername(username);
-			basicDataSource.setPassword(password);
-			return basicDataSource;
-
-		}
-		catch (Exception ex)
-		{
-			Logger.getAnonymousLogger().log(Level.SEVERE, ex.getMessage());
-			return null;
-		}
+	public DeviceResolverHandlerInterceptor deviceResolverHandlerInterceptor() {
+	    return new DeviceResolverHandlerInterceptor();
 	}
 
-	/**
-	 * Spring Boot needs this as part of setting up the database. By convention
-	 * it needs both a DataSource and a SqlSessionFactory.
-	 * 
-	 */
 	@Bean
-	public SqlSessionFactory getSqlSessionFactory()
-	{
-		try
-		{
-			SqlSessionFactoryBean b = new SqlSessionFactoryBean();
-			b.setDataSource(getDataSource());
-			return b.getObject();
-		}
-		catch (Exception ex)
-		{
-			Logger.getAnonymousLogger().log(Level.SEVERE, ex.getMessage());
-			return null;
-		}
+	public DeviceHandlerMethodArgumentResolver deviceHandlerMethodArgumentResolver() {
+	    return new DeviceHandlerMethodArgumentResolver();
 	}
 
-	/**
-	 * Basic servlet mapping config
-	 * 
-	 */
 	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer)
-	{
-		configurer.enable();
+	public void addInterceptors(InterceptorRegistry registry) {
+	    registry.addInterceptor(deviceResolverHandlerInterceptor());
 	}
+
+	@Override
+	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+	   argumentResolvers.add(deviceHandlerMethodArgumentResolver());
+	}
+	
+
 }
